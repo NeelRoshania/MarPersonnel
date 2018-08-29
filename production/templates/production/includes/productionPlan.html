@@ -1,0 +1,34 @@
+
+{% for productionPlan in object.getProductionPlans %}
+	<div id="subObject" style="background-color: #80CBC4; color:#E0F2F1; border-bottom: 1px solid white;">
+		<div class="row padding-1em-tb text-dark my-auto" style="padding-left: 0.5em;">
+			<span class="col-12 col-sm-12 col-md-3 my-auto" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">{{productionPlan.machine}} - {{productionPlan.productDescription}}</span>	
+			<span class="col-12 col-sm-3 col-md-3 my-auto" id="pPlanProductStatus_{{forloop.counter}}">{{productionPlan.batchNumber}}</span>
+			<span class="col-12 col-sm-3 col-md-3 my-auto" id="pPlanProductStatus_{{forloop.counter}}">{{productionPlan.status}}</span>
+			<div class="col-12 col-sm-3 col-md-2 float-left my-auto" style="padding: 0 !important;">
+				<span class="my-auto dropToggle float-left padding-1em-lr" data-toggle="collapse" data-target="#deleteProductionPlan_{{productionPlan.id }}_{{ object.id }}" style="font-weight: bold;" id="deleteProductionPlan_Toggle"><a id='delete'><i class="fas fa-trash-alt fa-sm"></i></a></span>
+				<span class="my-auto dropToggle float-left padding-1em-lr" style="font-weight: bold;" id="editProductionPlan_Toggle"><a id='edit' data-location="{% url 'production:edit_ProductionPlan' productionPlan.id %}" data-toggle="collapse" data-target="#editProductionPlan_{{ productionPlan.id }}_{{ object.id }}" ajaxStatus="editProductionPlanForm"><i class="fas fa-edit fa-sm"></i></a></span>
+			</div>							
+		</div>
+
+		<div class="collapse" id="deleteProductionPlan_{{productionPlan.id }}_{{ object.id }}">
+			<div class="bg-secondary text-white">
+			{% include 'production/includes/deleteProductionPlan.html' %}	
+			</div>
+		</div>
+
+		<div class="collapse" id="editProductionPlan_{{ productionPlan.id }}_{{ object.id }}">
+			<div class="bg-secondary text-white">
+				<div class="form">	
+					<div class="row">
+						<form class='editProductionForm' method='POST' action='.' data-url="{% url 'production:edit_ProductionPlan' productionPlan.id %}" ajaxStatus="editProductionPlanForm">
+						<div class="editProductionPlanForm">
+						{% include 'production/includes/editProductionPlanForm.html' %}
+						</div>
+						</form>
+					</div>									
+				</div>
+			</div>
+		</div>
+	</div>
+{% endfor %}	

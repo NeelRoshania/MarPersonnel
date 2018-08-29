@@ -1,0 +1,33 @@
+
+{% for maintenanceIssue in object.getMaintenanceIssues %}
+	<div id="subObject" style="background-color: #80CBC4; color:#E0F2F1; border-bottom: 1px solid white;">
+		<div class="row padding-1em-tb text-dark my-auto" style="padding-left: 0.5em;">
+			<span class="col-12 col-sm-12 col-md-3 my-auto" id="maintenanceIssueActive_{{forloop.counter}}" style="font-weight: bold; margin: 0.5em 0em;">
+			<span id="maintenanceIssueSubject_{{forloop.counter}}" style="font-weight: bold; margin: 0.5em 0em;">{{maintenanceIssue.subject}}</span></span>
+			<span class="col-12 col-sm-8 col-md-7 my-auto" id="maintenanceIssueNote_{{forloop.counter}}" style="margin: 0.5em 0em;">Action required: {{maintenanceIssue.note}}</span>
+			<div class="col-12 col-sm-3 col-md-2 float-left my-auto" style="padding: 0 !important; margin: 0.5em 0em;">
+				<span class="my-auto dropToggle float-left padding-1em-lr" data-toggle="collapse" data-target="#deleteMaintenanceIssue_{{ maintenanceIssue.id }}_{{ object.id }}" id="deleteMaintenanceIssue_Toggle"><a id='delete' ajaxStatus="deleteMaintenanceIssue"><i class="fas fa-trash-alt fa-sm"></i></a></span>
+				<span class="my-auto dropToggle float-left padding-1em-lr" style="padding-right: 1em;" id="editMaintenanceIssue_Toggle"><a id='edit' data-location="{% url 'production:edit_MaintenanceIssue' maintenanceIssue.id %}"  data-toggle="collapse" data-target="#editMaintenanceIssue_{{ maintenanceIssue.id }}_{{ object.id }}" ajaxStatus="editMaintenanceIssueForm"><i class="fas fa-edit fa-sm"></i></a></span>
+			</div>							
+		</div>
+		<div class="collapse" id="deleteMaintenanceIssue_{{ maintenanceIssue.id }}_{{ object.id }}">
+			<div class="bg-secondary text-white">
+			{% include 'production/includes/deleteMaintenanceIssue.html' %}	
+			</div>
+		</div>
+		
+		<div class="collapse" id="editMaintenanceIssue_{{ maintenanceIssue.id }}_{{ object.id }}">
+			<div class="bg-secondary text-white">
+				<div class="form">	
+					<div class="row">
+						<form class='editProductionForm' method='POST' action='.' data-url="{% url 'production:edit_MaintenanceIssue' maintenanceIssue.id %}" ajaxStatus="editMaintenanceIssueForm">	
+							<div class="editMaintenanceIssueForm">		
+								{% include 'production/includes/editMaintenanceIssue.html' %}	
+							</div>
+						</form>
+					</div>				
+				</div>
+			</div>		
+		</div>
+	</div>
+{% endfor %}

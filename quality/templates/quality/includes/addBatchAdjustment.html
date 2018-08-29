@@ -1,0 +1,33 @@
+{% csrf_token %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ batchAdjustment_Form.adjustmentStage.errors }}
+			    	<label for="{{ batchAdjustment_Form.adjustmentStage.id_for_label }}">Adjustment Stage</label>
+			    {{ batchAdjustment_Form.adjustmentStage }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ batchAdjustment_Form.rmCode.errors }}
+			    	<label for="{{ batchAdjustment_Form.rmCode.id_for_label }}">Raw material</label>
+			    {{ batchAdjustment_Form.rmCode }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ batchAdjustment_Form.adjustmentAmount.errors }}
+			    	<label for="{{ batchAdjustment_Form.adjustmentAmount.id_for_label }}">Amount to adjust</label>
+			    {{ batchAdjustment_Form.adjustmentAmount }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ batchAdjustment_Form.adjustmentUnit.errors }}
+			    	<label for="{{ batchAdjustment_Form.adjustmentUnit.id_for_label }}">Unit of adjustment</label>
+			    {{ batchAdjustment_Form.adjustmentUnit }}
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="updatedArea">
+			<button id="addFinishingAdjustment_Submit" class="btn btn-dark text-white" type="submit" style="margin-right: 1em;">
+			<i class="fas fa-check"></i><span></span>
+			</button>
+		</div>
+		<br>
+	</div>

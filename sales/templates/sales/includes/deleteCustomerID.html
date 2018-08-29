@@ -1,0 +1,8 @@
+<div style="padding: 1em 0em;">
+	<div class="row my-auto">
+		<span class="col my-auto" style="display: inline-block; margin-left: 1em !important;" >Are you want to delete this customer?</span>
+		<span class="my-auto dropToggle" id="deleteYes" href="{% url 'sales:delete_customerID' customerID.id %}" style="display: inline-block;" ajaxStatus="deleteCustomerIDForm">
+			<i class="fas fa-check fa-sm" style="color: red;"></i>
+		</span>
+	</div>
+</div>

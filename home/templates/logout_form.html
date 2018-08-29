@@ -1,0 +1,22 @@
+
+{% extends "loginMain.html" %}
+
+	{% block Login %}
+		<div class="">
+			<div class="row">
+				{% include 'loginList.html' %}
+			</div>
+	  	</div>
+  	
+		<div class="card" style="width: 100%;">
+			<div class="card-body">
+				<div class='container'>
+					<h4 class="card-title">You're Logged Out!</h4>
+					<h6 class="card-subtitle mb-2 text-muted">Have a great day!</h6>
+					<!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+					<br>
+				</div>
+		  	</div>
+		</div>
+		
+	{% endblock %}

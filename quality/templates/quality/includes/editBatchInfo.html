@@ -1,0 +1,115 @@
+{% csrf_token %}
+	<div class="container">
+
+		<div class="row">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalSg.errors }}
+			    	<label for="{{ subForm.finalSg.id_for_label }}">Final specific gravity</label>
+			    {{ subForm.finalSg }}
+			</div>
+			
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalOpacity.errors }}
+			    	<label for="{{ subForm.finalOpacity.id_for_label }}">Final Opacity</label>
+			    {{ subForm.finalOpacity }}
+			</div>
+			
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalGloss.errors }}
+			    	<label for="{{ subForm.finalGloss.id_for_label }}">Final gloss</label>
+			    {{ subForm.finalGloss }}
+			</div>
+		</div>
+
+		<br>
+
+		<div class="row">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalTouchDry.errors }}
+			    	<label for="{{ subForm.finalTouchDry.id_for_label }}">Final touch dry</label>
+			    {{ subForm.finalTouchDry }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalTouchDryUnit.errors }}
+			    	<label for="{{ subForm.finalTouchDryUnit.id_for_label }}">Final touch dry unit</label>
+			    {{ subForm.finalTouchDryUnit }}
+			</div>
+		</div>
+
+		<br>
+		
+		<div class="row">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalHardDry.errors }}
+			    	<label for="{{ subForm.finalHardDry.id_for_label }}">Final hard dry time</label>
+			    {{ subForm.finalHardDry }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalHardDryUnit.errors }}
+			    	<label for="{{ subForm.finalHardDryUnit.id_for_label }}">Hard dry unit</label>
+			    {{ subForm.finalHardDryUnit }}
+			</div>
+		</div>
+
+		<br>
+		
+		<div class="row">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalDft.errors }}
+			    	<label for="{{ subForm.finalDft.id_for_label }}">Final DFT</label>
+			    {{ subForm.finalDft }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalDftUnit.errors }}
+			    	<label for="{{ subForm.finalDftUnit.id_for_label }}">DFT taken at WFT of:</label>
+			    {{ subForm.finalDftUnit }}
+			</div>
+			
+		</div>
+
+		<br>
+		
+		<div class="row">
+
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalViscosity.errors }}
+			    	<label for="{{ subForm.finalViscosity.id_for_label }}">Final viscosity</label>
+			    {{ subForm.finalViscosity }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalViscosityUnit.errors }}
+			    	<label for="{{ subForm.finalViscosityUnit.id_for_label }}">Final viscosity unit</label>
+			    {{ subForm.finalViscosityUnit }}
+			</div>
+		</div>
+
+		<br>
+
+		<div class="row">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalColorDe.errors }}
+			    	<label for="{{ subForm.finalColorDe.id_for_label }}">Final color DE</label>
+			    {{ subForm.finalColorDe }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalColorDeSpec.errors }}
+			    	<label for="{{ subForm.finalColorDeSpec.id_for_label }}">How was the color passed?</label>
+			    {{ subForm.finalColorDeSpec }}
+			</div>
+		</div>
+
+		<br>
+
+		<div class="updatedArea">
+			<button id="addBatchInfo_Submit" class="btn btn-dark text-white" type="submit" style="margin-right: 1em;">
+			<i class="fas fa-check"></i><span></span>
+			</button>
+		</div>
+		<br>
+	</div>
+
+
+	
+
+
+

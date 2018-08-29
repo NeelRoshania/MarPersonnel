@@ -1,0 +1,61 @@
+{% if searchCustomerID_results.count == 0 %}
+	<div class="card-header bg-light text-dark" id="customerIDResult">
+		<div class="row h-100">
+			<span class="my-auto"><p class="col-12" style="text-align: center;">No data here!</p></span>
+		</div>
+	</div>
+
+{% else %}
+
+	{% for customerID in searchCustomerID_results %}
+		<div class="card-header bg-light text-dark" id="customerIDResult">
+			<div class="row h-100 my-auto">
+				<span class="col-8 col-sm-8 col-md-8 my-auto" id="customerIDSearchResult_subject">{{ customerID.customerName }}</span>
+				<div class="col-3 col-sm-3 col-md-3 float-right my-auto" style="padding: 0 !important;">
+					<p class="my-auto dropToggle float-right" data-target="#editCustomerID_{{ customerID.id }}" data-toggle="collapse" id="editCustomerID_Toggle"><a id='edit' data-location="{% url 'sales:editCustomerID' customerID.id %}" ajaxStatus="editCustomerIDForm"><i class="fas fa-edit fa-sm"></i></a></p>
+					<p class="my-auto dropToggle float-right" data-target="#deleteCustomerID_{{ customerID.id }}" data-toggle="collapse" id="deleteCustomerID_Toggle"><a id='delete' ajaxStatus="deleteCustomerID" style="padding-right: 1em;"><i class="fas fa-trash-alt fa-sm"></i></a></p>
+				</div>				
+			</div>
+		</div>
+		<div class="collapse" id="deleteCustomerID_{{ customerID.id }}">
+			<div class="bg-secondary text-white">
+				{% include 'sales/includes/deleteCustomerID.html' %}
+			</div>
+		</div>	
+		<div class="collapse" id="editCustomerID_{{ customerID.id }}">
+			<div class="bg-secondary text-white">
+				<div class="form">	
+					<form class='editSalesForm' method='POST' action='.' data-url="{% url 'sales:editCustomerID' customerID.id %}" ajaxStatus="editCustomerIDForm">
+						<div class="editCustomerIDForm">
+							{% include 'sales/includes/editCustomerIDForm.html' %}	
+						</div>
+					</form>
+				</div>									
+			</div>
+		</div>
+	{% endfor %}
+
+	{% if searchCustomerID_results %}
+	<div class="card mb-3" style="width: 100%; border-top: 1px solid #1976D2 !important;">
+		<div class="CustomerID_Pagination">
+			<div class="card-header" data-toggle="collapse">
+				<div class="container pagination">
+				    <span class="step-links">
+				        {% if searchCustomerID_results.has_previous %}
+				            <a class="dropToggle" id="customerIDPaginationPrevious" ajaxStatus="customerIDPaginationPrevious", data-url= "{% url 'sales:deliveryPlan_handlePagination' %}" style="color: #673AB7 !important; font-weight: bold; color: white;">Previous</a>
+				        {% endif %}
+
+					        <span class="current">
+					            Page {{ searchCustomerID_results.number }} of {{ searchCustomerID_results.paginator.num_pages }}
+					        </span>
+
+				        {% if searchCustomerID_results.has_next %}
+				            <a class="dropToggle" id="customerIDPaginationNext" ajaxStatus="customerIDPaginationNext" data-url= "{% url 'sales:deliveryPlan_handlePagination' %}" style="color: #673AB7 !important; font-weight: bold; color:white;">Next</a>
+				        {% endif %}
+				    </span>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+{% endif %}

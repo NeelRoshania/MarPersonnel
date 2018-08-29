@@ -1,0 +1,129 @@
+
+<div class="card border-light" style="width: 100%; min-height: 14em;">
+	{% if paginated_Sales.paginator.count == 0 %}
+		<div class="object">
+			<div class="card-body">
+				<span class="my-auto"><p class="col-12" style="text-align: center;">No data here!</p></span>
+			</div>
+		</div>
+
+    {% else %}
+
+		{% for object in paginated_Sales %}
+			<div id="DeliveryPlanList">				
+				<div class="card-header" id="deliveryPlan_header" style="border-left: 0.15em solid #6200EA !important;">
+					<div class="row h-100"> 
+						{% if object.active == "Delivered" %}
+							{% if object.delayField or object.delayReason %}
+								<span class="col-1 col-sm-1 my-auto" style="color: #00C853;"><i class="fas fa-exclamation fa-sm"></i></span>
+							{% else %}
+								<span class="col-1 col-sm-1 my-auto" style="color: #00C853;"><i class="fas fa-check fa-sm"></i></span>
+							{% endif %}
+								<span class="col-6 col-sm-8 my-auto"><span class="dropToggle" id="deliveryPlan_subject"  data-target="#deliveryPlan_{{ object.id }}" data-toggle="collapse">{{object.customerID}}</span></span>
+								<div class="col float-right my-auto">
+									<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#editDeliveryPlan_{{ object.id }}" data-toggle="collapse" id="editDeliveryPlan_Toggle"><a id='edit' data-location="{% url 'sales:edit_DeliveryPlan' object.id %}" ajaxStatus="editDeliveryPlanForm"><i class="fas fa-edit fa-sm"></i></a></p>
+								</div>
+						{% elif object.active == "Scheduled"%}
+							<span class="col-1 col-sm-1 my-auto" style="color: #00C853"><i class="fas fa-truck fa-sm"></i></span>
+							<span class="col-6 col-sm-8 my-auto"><span class="dropToggle" id="deliveryPlan_subject"  data-target="#deliveryPlan_{{ object.id }}" data-toggle="collapse">{{object.customerID}}</span></span>
+							<div class="col float-right my-auto">
+								<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#editDeliveryPlan_{{ object.id }}" data-toggle="collapse" id="editDeliveryPlan_Toggle"><a id='edit' data-location="{% url 'sales:edit_DeliveryPlan' object.id %}" ajaxStatus="editDeliveryPlanForm"><i class="fas fa-edit fa-sm"></i></a></p>
+								<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#updateDeliveryPlan{{ object.id }}" data-toggle="collapse" id="confirmDeliveryPlan_Toggle"><a id='delete' ajaxStatus="deleteProductionMeetingForm"><i class="fas fa-arrow-right fa-sm"></i></a></p>
+							</div>
+						{% else %}
+							<span class="col-1 col-sm-1 my-auto" style="color: red;"><i class="fas fa-exclamation fa-sm"></i></span>
+							<span class="col-6 col-sm-8 my-auto"><span class="dropToggle" id="deliveryPlan_subject"  data-target="#deliveryPlan_{{ object.id }}" data-toggle="collapse">{{object.customerID}}</span></span>
+							<div class="col float-right my-auto">
+								<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#editDeliveryPlan_{{ object.id }}" data-toggle="collapse" id="editDeliveryPlan_Toggle"><a id='edit' data-location="{% url 'sales:edit_DeliveryPlan' object.id %}" ajaxStatus="editDeliveryPlanForm"><i class="fas fa-edit fa-sm"></i></a></p>
+								<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#updateDeliveryPlan{{ object.id }}" data-toggle="collapse" id="confirmDeliveryPlan_Toggle"><a id='delete' ajaxStatus="deleteProductionMeetingForm"><i class="fas fa-arrow-right fa-sm"></i></a></p>
+							</div>	
+
+						{% endif %}
+									
+					</div>
+				</div>
+				<div class="collapse" id="updateDeliveryPlan{{ object.id }}">
+					<div class="bg-secondary text-white">
+					{% include 'sales/includes/confirmDeliveryOfDeliveryPlanForm.html' %}
+					</div>
+				</div>	
+				<div class="collapse" id="editDeliveryPlan_{{ object.id }}">
+					<div class="bg-secondary text-white">
+						<div class="form">
+							<form class='editSalesForm' method='POST' action='.' data-url="{% url 'sales:edit_DeliveryPlan' object.id %}" ajaxStatus="editDeliveryPlanForm">
+								<div class="editDeliveryPlanForm">
+									{% include 'sales/includes/editDeliveryPlanForm.html' %}	
+								</div>
+							</form>
+						</div>									
+					</div>
+				</div>	
+		
+				<div class="collapse" id="deliveryPlan_{{ object.id }}">
+					<div class="card-body" style="background: #F0F4C3; border-left: 2px solid #D4E157;">	
+						<div class="row" style="padding: 0.5em 0em">
+							<span class="col-sm-4 col-md-4 col-lg-2" style="font-weight: bold;">Date ordered</span>
+							<span class="col-sm-8 col-md-8 col-lg-8" id="deliveryPlanDateofdelivery_{{forloop.counter}}">{{object.orderDate|date:"D, d M Y"}}</span>
+						</div>
+						<div class="row" style="padding: 0.5em 0em">
+							<span class="col-sm-4 col-md-4 col-lg-2" style="font-weight: bold;">Delivery date</span>
+							<span class="col-sm-8 col-md-8 col-lg-8" id="deliveryPlanDateofdelivery_{{forloop.counter}}">{{object.dateOfDelivery|date:"D, d M Y"}}</span>
+						</div>
+						<div class="row" style="padding: 0.5em 0em">
+							<span class="col-sm-4 col-md-4 col-lg-2" id="deliveryPlanInvoiceNumber_{{forloop.counter}}" style="font-weight: bold;">Invoice number</span>	
+							<span class="col-sm-8 col-md-8 col-lg-8" id="deliveryPlanInvoiceNumber_{{forloop.counter}}">{{object.invoiceNumber}}</span>
+						</div>
+						
+						{% if object.active == "Not Delivered" %}
+						<div class="row">
+							<span class="col-sm-12" id="deliveryPlanDelayField_{{forloop.counter}}" style="color: red; margin-top: 1em; font-weight: bold;">*This plan was not delivered</span>
+						</div>
+						{% elif object.active == "Scheduled" %}
+						<div class="row">
+							<span class="col-sm-12" id="deliveryPlanDelayField_{{forloop.counter}}" style="color: green; margin-top: 1em; font-weight: bold;">*This plan is scheduled for delivery</span>
+						</div>
+						{% elif object.delayField or object.delayReason %}
+							{% if object.delayField and object.delayReason %}
+							<div class="row">
+								<span class="col-sm-12" style="margin-top: 1em; font-weight: bold;">*This plan was delivered but delayed</span>
+								<span class="col-sm-12" id="deliveryPlanDelayReason_{{forloop.counter}}" style="color: red;">{{object.delayField}} - {{object.delayReason}}</span>
+							</div>
+							{% elif  object.delayField%}
+							<div class="row">
+								<span class="col-sm-12" id="deliveryPlanDelayField_{{forloop.counter}}" style="color: red; margin-top: 1em; font-weight: bold;">{{object.delayField}}</span>
+							</div>
+							{% else %}
+							<div class="row">
+								<span class="col-sm-12" id="deliveryPlanDelayField_{{forloop.counter}}" style="color: red; margin-top: 1em; font-weight: bold;">{{object.delayReason}}</span>
+							</div>
+							{% endif %}
+						{% endif %}							
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+
+	{% endif %}
+</div>
+
+<div class="card border-light mb-3" style="width: 100%; border-top: 1px solid #827717 !important;">
+	<div class="paginationBlock">
+		<div class="card-header" data-toggle="collapse">
+			<div class="container pagination">
+			    <span class="step-links"> 
+			        {% if paginated_Sales.has_previous %}
+			            <a class="dropToggle text-dark" id="salesPaginationPrevious" data-url="{% url 'sales:deliveryPlan_handlePagination' %}" ajaxStatus="refreshDeliveryPlanList" style="color: #827717 !important;">Previous</a>
+			        {% endif %}
+
+			        <span class="current">
+			            Page {{ paginated_Sales.number }} of {{ paginated_Sales.paginator.num_pages }}
+			        </span>
+
+			        {% if paginated_Sales.has_next %}
+			            <a class="dropToggle text-dark" id="salesPaginationNext" data-url="{% url 'sales:deliveryPlan_handlePagination' %}" ajaxStatus="refreshDeliveryPlanList" style="color: #827717 !important;">Next</a>
+			        {% endif %}
+			    </span>
+			</div>
+		</div>
+	</div>
+</div>

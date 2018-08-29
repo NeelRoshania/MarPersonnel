@@ -1,0 +1,8 @@
+<div style="padding: 1em 0em;">
+	<div class="row my-auto">
+		<span class="col my-auto" style="display: inline-block; margin-left: 1em !important;" >Are you sure you want to delete <span style="font-style: italic;">"{{ noteDescription }}"</span>?</span>
+		<span class="my-auto dropToggle"id="deleteYes" class='fas fa-check fa-sm dropToggle' href="{% url 'home:delete_NoteDescription' noteDescription.id %}" style="display: inline-block;" ajaxStatus="deleteNoteDescriptionForm">
+			<i class="fas fa-check fa-sm" style="color: #FF5252;"></i>
+		</span>
+	</div>
+</div>

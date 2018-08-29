@@ -1,0 +1,22 @@
+{% csrf_token %}
+<br>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-4" >
+		    {{ noteDescription_Form.description.errors }}
+		    	<label for="{{ noteDescription_Form.description.id_for_label }}">Description</label>
+		    {{ noteDescription_Form.description }}
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-4">
+		    {{ noteDescription_Form.noteDescriptionProgress.errors }}
+		    	<label for="{{ noteDescription_Form.noteDescriptionProgress.id_for_label }}">Progress</label>
+		    {{ noteDescription_Form.noteDescriptionProgress }}
+		</div>
+	</div>
+</div>
+<div class="updatedArea" style="margin: 0.8em 0.9em;">
+	<button id="addNoteDescription_Submit" class="btn btn-primary" type="submit">
+	<i class="fas fa-check"></i><span></span>
+	</button>
+</div>
+<br>

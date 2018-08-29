@@ -1,0 +1,50 @@
+<!-- GitHub Code: https://github.com/codingforentrepreneurs/AJAXify-Django-Forms -->
+
+
+{% extends "headerMain.html" %}
+{% load staticfiles %}
+
+{% block notification %}
+	
+	<div class="row">
+		<div style="background-image: url('{% static 'home/img/group1.jpeg' %}'); background-size: cover; width: 100%; min-height: 30em; max-height: 40em; background-position: 70% 0%; " >
+			<h3 style="padding: 1em; margin: 2em 2em; color: white; display: inline-block; background-color: #212121;">Hi {{user.username|capfirst}}!</h3>
+		</div>
+		<br>
+		<br>
+		<div style="width:100%" class='updateItem' id="updateItem"></div>
+		<div style="width:100%" class="container">
+			<div style="width:100%" class="otherError"></div>
+		</div>		
+		<div style="width:100%" id="errorLog"></div>
+
+		<hr>
+
+	</div>
+	
+{% endblock %}
+
+{% block userToDo %}
+	<!-- Update list with ajax item -->
+	<br>
+	<div class="container">
+		<div class="objectHeader row text-white shadow" id="personalObjectives" style="background-image: url('{% static 'home/img/objectives1.jpg' %}');" artist="Glenn Carstens-Peters - https://unsplash.com/@glenncarstenspeters">
+			<span class="col-11 col-sm-8 col-md-9 col-lg-9 my-auto text-light"><h5 class="float-left" style="margin: 0em 0.5em !important;">Personal Management</h5></span>
+			<div class="col col-sm-4 col-md-3 col-lg-3 float-right my-auto text-light" >
+				<span class="my-auto padding-1em-lr" id="searchObject"><i class="fas fa-search fa-sm dropToggle"></i></span>
+				<span class="my-auto padding-1em-lr" id="addObject"><i class="fas fa-plus fa-sm dropToggle"></i></span>
+				<span class="my-auto padding-1em-lr" id="refreshObjectList" ajaxStatus="refreshObjectList" data-url="{% url 'home:update_objectList' %}"><i class="fas fa-sync fa-sm dropToggle"></i></span>
+			</div>
+		</div>
+		<div class="row text-white shadow" id="searchObjectForm">
+			{% include 'home/includes/searchHome.html' %}
+		</div>
+		<div class="row text-dark shadow" id="addObjectForm">
+			{% include 'home/includes/addUserToDoForm.html' %}
+		</div>
+		<div class="row" id="objectList">	
+			{% include 'home/includes/objectList.html' %}
+		</div>
+	</div>
+	<br>
+{% endblock %}

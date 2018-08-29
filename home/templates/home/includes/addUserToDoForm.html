@@ -1,0 +1,30 @@
+<div class='card-body' style="background-color: #E0E0E0;">
+	<div class="text-dark padding-1em-lr">
+		<span id="addObjectHeading" style="padding-bottom: 1em; font-weight: bold;">Complete the information below</span>
+		<hr>
+		<form class='my-ajax-form' status='newObject' method='POST' action='.' data-url="{% url 'home:index' %}" ajaxStatus="addUserToDoForm">
+			{% csrf_token %}
+
+			<div class="row">
+				<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+				    {{ form.subject.errors }}
+				    	<label for="{{ userToDo_Form.subject.id_for_label }}">Subject</label>
+				    {{ userToDo_Form.subject }}
+				</div>
+				<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+				    {{ form.toDoProgress.errors }}
+				    	<label for="{{ userToDo_Form.toDoProgress.id_for_label }}">Progress</label>
+				    {{ userToDo_Form.toDoProgress }}
+				</div>
+			</div>
+			<br>
+
+			<div class="updatedArea">
+				<button id="addUserToDo_Submit" class="btn btn-primary" type="submit" style="margin-right: 1em;">
+				<i class="fas fa-check"></i>
+				</button>
+			</div>
+			<br>
+		</form>	
+	</div>
+</div>

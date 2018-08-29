@@ -1,0 +1,22 @@
+
+
+{% csrf_token %}
+<h5 id="editMaintenanceIssue_header">Change the information of this maintenance issue.</h5>
+<hr>
+<div class="row">
+	{% for field in subForm %}
+	<!-- Anything larger than medium screen res gets spacing of 4 -->
+	<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+		<span class=''
+		> {{ field.label_tag }}</span>
+		<span class=''> {{ field }} </span>
+	</div>
+	{% endfor %}
+</div>
+<br>
+<div class="updatedArea">
+	<button id="edit_MaintenanceIssue_Submit" class="btn btn-primary" type="submit" style="margin-right: 1em;">
+	<i class="fas fa-check"></i><span></span>
+	</button>
+</div>
+<hr>

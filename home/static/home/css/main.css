@@ -1,0 +1,329 @@
+/*C:\Users\nrosh\Anaconda2\Scripts\PROJECTS\PYTHON\DJANGO\acpersonnel\ajaxified\static\ajaxified\css*/
+
+/*.jumbotron{
+	border: 1px dashed blue;
+}
+
+.row{
+	border: 1px dashed red;
+}
+
+.container{
+	border: 1px dashed green;
+}*/
+
+.class{
+	border: 1px dashed yellow;
+}
+
+.no-click {
+    pointer-events: none;
+}
+
+/* Production styling */
+html, body {
+	font-family: 'Muli', sans-serif;
+}
+
+.objectHeader{
+	height: 5em;
+	border-radius: 5px;
+}	
+
+.padding-1em-tb {
+	padding: 1em 0em;
+}
+
+.padding-1em-lr {
+	padding: 0em 1em;
+}
+
+.padding-2em-lr {
+	padding: 0em 2em;
+}
+
+.padding-2em-all {
+	padding: 2em 2em !important;
+}
+
+.margin-1em-lr {
+	margin: 0em 1em;
+}
+
+.margin-1em-tb {
+	margin: 1em 0em;
+	o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+}
+
+.shadow {
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.jumbotron{
+	background-color: white;
+	padding: 0 1em;!important;
+}
+
+
+.form-control{
+	width: 15em !important;
+	border: none !important;
+	border-bottom: 1px #607D8B solid !important;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+#addObjectForm{
+	display: none;
+}
+
+#searchObjectForm {
+	display: none;
+}
+
+/*Blur elements during AJAX Load*/
+.blur-all {
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+}
+
+#errorLog{
+	background: grey;
+	color: white;
+	padding: 1em;
+	display: none;
+}
+
+.card {
+	margin: 1em 0em;
+	border-radius: 0 !important;
+	/*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+	background: none;
+	border: none !important;
+}
+
+.card-header {
+	font-weight: 900 !important;
+	background: #FAFAFA !important;
+	border: none !important;
+	border-radius: 0px !important;
+}
+
+.navbar{
+	background: #808e95;
+	color: black !important;
+	width: 100%;
+	padding: 2em 2em !important;
+}
+
+/*Centering Icon within Button*/
+.navbar-toggler {
+	width: 2em !important;
+	border: none !important;
+}
+
+.navbar-toggler span {
+	display: block;
+}
+
+.dropToggle {
+	cursor: pointer;
+}
+
+.form {
+	padding : 2em 2em !important;
+}
+
+.deleteObject {
+	margin : 2em 2em !important;
+}
+
+#deleteYes{
+	display: inline-block; 
+	margin-left: 1em; 
+	width: 4em;
+}
+
+#deleteNo{
+	display: inline-block; 
+	margin-left: 1em; 
+	width: 4em;
+}
+
+.deleteVis {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #FF1744 !important;
+	font-weight: bold !important;
+	transition:.5s;
+}
+
+.insertHeader{
+	color: black !important; 
+	background-color: #EC407A !important;
+	color: white !important;
+}
+
+.insertHeader:hover{
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #673AB7 !important;
+	color: white !important;
+	font-weight: bold !important;
+	transition:.5s;
+}
+
+.insertHeader_clicked{
+	background-color: #673AB7 !important;
+	color: white !important;
+	font-weight: bold !important;
+}
+
+
+/*#notificationPanel {
+	display: none;
+}*/
+
+#notificationPanel {
+	position: fixed;
+	bottom: 0;
+	width: 100% !important;
+}
+
+.callNotification {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	bottom: +0.1em !important;
+	transition:.1s;
+}
+
+.closeNotification {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	bottom: -4em !important;
+	transition:.1s;
+}
+
+#personalObjectives {
+	/*background-color: #1976D2 !important; /*MATERIAL DESIGN - 700*/*/
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-position: 50% 65%; 
+	min-height: 8em;
+	max-height: 20em;
+}
+
+#addUserNote_Toggle:hover {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	font-weight: bold;
+	transition:.5s;
+}
+
+#addNoteDescription_Toggle:hover{
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #BBDEFB; /*MATERIAL DESIGN - 100*/
+	transition:.5s;
+}
+
+#UserToDo_heading:hover {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #90CAF9 !important; /*MATERIAL DESIGN - 400*/
+	color: white !important;
+	font-weight: bold;
+	transition:.5s;
+}
+
+.userToDoClicked{
+	background-color: #90CAF9 !important; /*MATERIAL DESIGN - 400*/
+	margin: 1em 0em;
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+}
+
+.deleteUseToDoClicked{
+	background-color: #42A5F5 !important; /*MATERIAL DESIGN - 300*/
+	color: white !important;
+}
+
+#userNoteHeading:hover {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #E3F2FD !important; /*MATERIAL DESIGN - 300*/
+	color: #FF6F00 !important;
+	/* ...and now for the proper property */
+	/*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+	transition:.5s;
+}
+
+.userNoteHeadingClicked{
+	background-color: #E3F2FD !important; /*MATERIAL DESIGN - 300*/
+	color: #FF6F00 !important;
+	margin-top: 1em;
+	
+}
+
+.noteDescription:hover {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #E0E0E0 !important; /*MATERIAL DESIGN - 300*/
+	/* ...and now for the proper property */
+	/*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+	transition:.5s;
+	
+}
+
+.noteDescriptionHover{
+	-o-transition: .5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #E3F2FD !important; /*MATERIAL DESIGN - 50*/
+	font-weight: bold;
+	transition:.5s;
+}
+
+.addNoteDescription_ToggleHover {
+	background-color: #BBDEFB; /*MATERIAL DESIGN - 100*/
+}
+
+@media (max-width: 768px){
+    .card-header {
+        font-size: 80%;
+    }
+}
+
+@media (min-width: 992px){
+    .card-header {
+        font-size: 90%;
+    }
+}

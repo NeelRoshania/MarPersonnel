@@ -1,0 +1,23 @@
+<form class='my-ajax-form' method='POST' action='.' data-url="{% url 'home:index' %}" ajaxStatus="addUserNoteForm" userTodo="{{ UserToDo.id }}" style="width: 100% !important;">
+	{% csrf_token %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" >
+			    {{ userNote_Form.taskNote.errors }}
+			    	<label for="{{ userNote_Form.taskNote.id_for_label }}">Task</label>
+			    {{ userNote_Form.taskNote }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" >
+			    {{ userNote_Form.noteProgress.errors }}
+			    	<label for="{{ userNote_Form.noteProgress.id_for_label }}">Progress</label>
+			    {{ userNote_Form.noteProgress }}
+			</div>
+			<br>
+		</div>
+	</div>
+	<div class="updatedArea" style="margin: 0.8em 0.9em;">
+		<button id="addUserNote_Submit" class="btn btn-primary" type="submit">
+		<i class="fas fa-check"></i>
+		</button>
+	</div>
+</form>	

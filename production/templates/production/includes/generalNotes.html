@@ -1,0 +1,31 @@
+
+{% for prodNote in object.getNotes %}
+	<div id="subObject" style="background-color: #80CBC4; color:#E0F2F1; border-bottom: 1px solid white;">
+		<div class="row padding-1em-tb text-dark my-auto">
+			<span class="col my-auto" id="productioNote_{{forloop.counter}}" style="margin-left: 1em;">{{prodNote.prodNote}}</span>	
+			<div class="col float-right my-auto" style="margin-right: 1em;">
+				<span class="my-auto dropToggle float-right" data-toggle="collapse" data-target="#deleteProdNote_{{ prodNote.id }}_{{ object.id }}" style="font-weight: bold; padding-left: 1em;" id="deleteProductionNote_Toggle"><a id='delete'><i class="fas fa-trash-alt fa-sm"></i></a></span>
+				<span class="my-auto dropToggle float-right" style="font-weight: bold;" id="editProductionNote_Toggle"><a id='edit' data-location="{% url 'production:edit_ProductionNote' prodNote.id %}"  data-toggle="collapse" data-target="#editProductionGeneralNote_{{ prodNote.id }}_{{ object.id }}" ajaxStatus="editProductionGeneralNote"><i class="fas fa-edit fa-sm"></i></a></span>
+			</div>							
+		</div>
+	
+		<div class="collapse" id="deleteProdNote_{{ prodNote.id }}_{{ object.id }}">
+			<div class="bg-secondary text-white">
+				{% include 'production/includes/deleteProductionNote.html' %}	
+			</div>
+		</div>
+		<div class="collapse" id="editProductionGeneralNote_{{ prodNote.id }}_{{ object.id }}">
+			<div class="bg-secondary text-white">
+				<div class="padding-2em-all">
+					<div class="row">
+						<form class='editProductionForm' method='POST' action='.' data-url="{% url 'production:edit_ProductionNote' prodNote.id %}" ajaxStatus="editProductionNoteForm">		
+						<div class="editProductionGeneralNote">
+							{% include 'production/includes/editProductionNoteForm.html' %}
+						</div>	
+						</form>
+					</div>									
+				</div>
+			</div>		
+		</div>
+	</div>
+{% endfor %}	

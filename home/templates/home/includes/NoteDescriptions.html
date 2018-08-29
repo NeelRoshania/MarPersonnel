@@ -1,0 +1,32 @@
+{% for usernote in object.getUserNotes %}
+	<div class='card-header dropToggle' data-target="#userNote_{{ usernote.id }}" data-toggle="collapse">
+		<span class="col-1 col-sm-1 dropToggle my-auto"><i class="fas fa-angle-double-down fa-sm"></i></span>
+		<span class="col-4 col-sm-8 my-auto dropToggle" id="userToDo_subject">{{usernote.taskNote}}</span>
+
+		<span class="my-auto dropToggle float-right padding-1em-lr" data-target="#cardBodyEdit{{ object.id }}" style="font-weight: bold;"><a id='edit' data-location="{% url 'home:edit_UserNote' usernote.id %}"  data-toggle="collapse" data-target="#subObjectEdit{{ usernote.id }}">Edit</a></span>
+		<span class="my-auto dropToggle float-right padding-1em-lr" data-toggle="collapse" data-target="#subObjectDelete{{ usernote.id }}" style="font-weight: bold;"><a id='delete'>Delete</a></span>
+		<div class="row bg-secondary text-white">
+			<div class="collapse" id="subObjectDelete{{ usernote.id }}">
+				{% include 'production/includes/deleteProductionMeetingForm.html' %}	
+			</div>
+			<div class="collapse" id="subObjectEdit{{ usernote.id }}">
+				<div class="padding-2em-all">
+						<form class='editObjectForm' method='POST' action='.' data-url="{% url 'home:edit_UserNote' usernote.id %}" ajaxStatus="editUserNoteForm">			
+						{% include 'home/includes/editUserNoteForm.html' %}	
+						</form>									
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="collapse" id="userNote_{{ usernote.id }}">
+
+		<div id="subObject" style="padding: 1em 0em;">
+			<div class="container">
+				<div class="row">
+					<span class="col-sm-2" id="noteProgress_{{forloop.counter}}">{{usernote.insertedAt|date:"D, d M Y"}}</span>
+					<p class="col-sm-10" id="notetaskNote_{{forloop.counter}}">{{usernote.noteProgress}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endfor %}

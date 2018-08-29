@@ -1,0 +1,89 @@
+/*C:\Users\nrosh\Anaconda2\Scripts\PROJECTS\PYTHON\DJANGO\acpersonnel\production\static\production\css/main.css*/
+
+#addQualityList{
+	display: none;
+}
+
+#searchQualityList {
+	display: none;
+}
+
+#qualityPlans{
+	/*background-color: #FFA000; /*MATERIAL DESIGN - 700*/*/
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-position: 50% 60%; 
+	min-height: 8em;
+	max-height: 20em;
+}
+
+#qualityPlan:hover {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #FFCA28 !important; /*MATERIAL DESIGN - 400*/
+	/*  ...and now for the proper property */
+	/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+	transition:.5s;
+
+}
+
+.qualityPlanHover{
+	-o-transition: .5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #FFCA28 !important; /*MATERIAL DESIGN - 400*/
+	margin-top: 1em;
+	transition:.5s;
+	margin: 1em 0em;
+}
+
+#premixParameters:hover {
+	-o-transition: .5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #FFD54F !important; /*MATERIAL DESIGN - 300*/
+	transition:.5s;
+}
+
+#batchParameters:hover {
+	-o-transition: .5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #FFD54F !important; /*MATERIAL DESIGN - 300*/
+	transition:.5s;
+}
+
+#finishingAdjustments:hover {
+	-o-transition: .5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #FFD54F !important; /*MATERIAL DESIGN - 300*/
+	transition:.5s;
+}
+
+#editQuality_header:hover{
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #FFECB3; /*MATERIAL DESIGN - 100*/
+	/*  ...and now for the proper property */
+	/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+	transition:.5s;
+
+}
+
+.editQualityHeader_headerClicked {
+	background-color: #FFECB3; /*MATERIAL DESIGN - 100*/
+}
+
+.qualityPlanCards_clicked {
+	background-color: #FFD54F !important; /*MATERIAL DESIGN - 300*/
+}
+

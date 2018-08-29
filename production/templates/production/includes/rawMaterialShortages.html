@@ -1,0 +1,30 @@
+
+{% for rmShortage in object.getRMShortages %}
+	<div id="subObject" style="background-color: #80CBC4; color:#E0F2F1; border-bottom: 1px solid white;">
+		<div class="row padding-1em-tb text-dark my-auto" style="padding-left: 0.5em;">
+			<span class="col-8 col-sm-9 col-md-9 my-auto" id="rmShortage_{{ rmShortage.id }}_Meeting_{{object.id}}"><span id="rmShortage_{{ rmShortage.id }}_Meeting_{{object.id}}">{{rmShortage.rmShortage.get}} at {{rmShortage.rmLevel}}</span></span>
+			<div class="col-2 col-sm-2 col-md-2 float-right my-auto" style="padding: 0 !important;">
+				<span class="my-auto dropToggle float-right" data-toggle="collapse" data-target="#deleteRMShortage_{{ rmShortage.id }}_{{ object.id }}" id="deleteRMShortage_Toggle"><a id='delete' ajaxStatus="deleteRMShortageForm"><i class="fas fa-trash-alt fa-sm"></i></a></span>
+				<span class="my-auto dropToggle float-right" id="editRawMaterial_Toggle"><a id='edit' data-location="{% url 'production:edit_RMShortage' rmShortage.id %}"  data-toggle="collapse" data-target="#editRMShortage_{{ rmShortage.id }}_{{ object.id }}" ajaxStatus="editRMShortageForm" style="padding-right: 1em;"><i class="fas fa-edit fa-sm"></i></a></span>
+			</div>							
+		</div>
+		<div class="collapse" id="deleteRMShortage_{{ rmShortage.id }}_{{ object.id }}">
+			<div class="bg-secondary text-white">
+				{% include 'production/includes/deleteRMShortage.html' %}	
+			</div>
+		</div>
+		<div class="collapse" id="editRMShortage_{{ rmShortage.id }}_{{ object.id }}">
+			<div class="bg-secondary text-white">
+				<div class="form">	
+					<div class="row">
+						<form class='editProductionForm' method='POST' action='.' data-url="{% url 'production:edit_RMShortage' rmShortage.id %}" ajaxStatus="editRMShortageForm">
+						<div class="editRMShortageForm">		
+							{% include 'production/includes/editRMShortage.html' %}	
+						</div>
+						</form>
+					</div>									
+				</div>
+			</div>		
+		</div>
+	</div>
+{% endfor %}	

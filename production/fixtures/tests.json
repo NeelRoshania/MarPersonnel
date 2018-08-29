@@ -1,0 +1,11 @@
+[
+  {
+    "model": "production.ProdMeeting",
+    "pk": 1,
+    "fields": {
+      "subject": "testProdMeeting1",
+      "insertedAt" : "2017-05-28 22:43:11.177968"
+    }
+  }
+
+]

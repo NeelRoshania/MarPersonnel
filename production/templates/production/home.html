@@ -1,0 +1,26 @@
+<!-- GitHub Code: https://github.com/codingforentrepreneurs/AJAXify-Django-Forms -->
+{% load staticfiles %}
+{% block production %}
+	<!-- Update list with ajax item -->
+
+	<div class="container">
+		<div class="objectHeader row text-white shadow" id="productionMeetings" style="background-image: url('{% static 'home/img/meeting1.jpg' %}');" artist="Isis Franca - https://unsplash.com/@isisf">
+			<span class="col-11 col-sm-8 col-md-9 col-lg-9 my-auto text-light"><h5 class="float-left" style="margin: 0em 0.5em !important;">Production Meetings</h5></span>
+			<div class="col col-sm-4 col-md-3 col-lg-3 my-auto text-light" >
+					<span class="my-auto padding-1em-lr" id="searchProduction"><i class="fas fa-search fa-sm dropToggle"></i></span>
+					<span class="my-auto padding-1em-lr" id="addProduction"><i class="fas fa-plus fa-sm dropToggle"></i></span>
+					<span class="my-auto padding-1em-lr" id="refreshProductionList" data-url="{% url 'production:update_productionList' %}" ajaxStatus="refreshProductionPlanList"><i class="fas fa-sync fa-sm dropToggle"></i></span>
+			</div>
+		</div>
+		<div class="row text-white shadow" id="searchProductionForm">
+			{% include 'production/includes/searchProduction.html' %}
+		</div>
+		<div class="row text-dark shadow" id="addProductionForm">
+			{% include 'production/includes/addProductionPlanForm.html' %}
+		</div>
+		<div class="row" id="productionPlan">	
+			{% include 'production/includes/objectList.html' %}
+		</div>
+	</div>
+	<br>
+{% endblock %}

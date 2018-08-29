@@ -1,0 +1,104 @@
+<div class='card-header insertHeader'>
+	<div class="row h-100">
+		<span class="col my-auto dropToggle" id="InserBatch_heading" data-target="#insertNewBatch" data-toggle="collapse" style="margin-left: 1em;">Insert a batch</span>
+	</div>
+</div>
+<div class='collapse' id='insertNewBatch'>
+	<div class='card-body' style="background-color: #E0E0E0;">
+		<div class="text-dark padding-1em-lr">
+			<span id="addObjectHeading" style="padding-bottom: 1em; font-weight: bold;">Complete the information below</span>
+			<hr>
+			<form class='quality-form' method='POST' action='.' data-url="{% url 'quality:index' %}" ajaxStatus="addNewBatchForm">
+				{% include 'quality/includes/addNewBatchInfo.html' %}
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class='card-header insertHeader'>
+	<div class="row h-100">
+		<span class="col my-auto dropToggle" id="RDProject_heading" data-target="#insertQualityProject" data-toggle="collapse" style="margin-left: 1em;">Insert a lab project</span>
+	</div>
+</div>
+<div class='collapse' id='insertQualityProject'>
+	<div class='card-body' style="background-color: #E0E0E0;">
+		<div class="text-dark padding-1em-lr">
+			<span id="addObjectHeading" style="padding-bottom: 1em; font-weight: bold;">Complete the information below</span>
+			<hr>
+			<form class='quality-form' status='newObject' method='POST' action='.' data-url="{% url 'quality:index' %}" ajaxStatus="addRDProject">
+				{% include 'quality/includes/addNewRDProject.html' %}
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class='card-header insertHeader'>
+	<div class="row h-100">
+		<span class="col my-auto dropToggle" id="insertProductType_heading" data-target="#addProductType" data-toggle="collapse" style="margin-left: 1em;">Insert a new product</span>
+	</div>
+</div>
+<div class='collapse' id='addProductType'>
+	<div class='card-body' style="background-color: #E0E0E0;">
+		<div class="text-dark padding-1em-lr">
+			<span id="addObjectHeading" style="padding-bottom: 1em; font-weight: bold;">Complete the information below</span>
+			<hr>
+			<form class='quality-form' status='newObject' method='POST' action='.' data-url="{% url 'quality:index' %}" ajaxStatus="addProductTypeForm">
+				{% include 'quality/includes/addNewProductType.html' %}
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class='card-header insertHeader'>
+	<div class="row h-100">
+		<span class="col my-auto dropToggle" id="editRDProject_heading" data-target="#editRDProject" data-toggle="collapse" style="margin-left: 1em;">View/Edit a lab batches</span>
+	</div>
+</div>
+<div class='collapse' id='editRDProject'>
+	<div class='card-body' style="background-color: #E0E0E0;">
+		<div class="text-dark padding-1em-lr">
+			<span id="addObjectHeading" style="padding-bottom: 1em; font-weight: bold;">Search for a lab project by customer, then view details.</span>
+			<hr>
+			<form class='searchQuality-form' method='GET' action='.' data-url="{% url 'quality:quality_handlePagination' %}" ajaxStatus="search_EDIT_QualityProject">
+				<!-- Input box here -->
+				<div class="input-group mb-3">
+				  <input id="searchQRDProjectInput" type="text"  name="searchObjectFieldText" class="searchField col-8 col-sm-8 form-control" placeholder="Search for quality project" aria-label="Search for quality project" aria-describedby="basic-addon2" >
+				  <div class="input-group-prepend col-4 col-sm-4" >
+				    <button class="btn btn-dark text-white" type="submit" id="searchRDProject_Submit">Go!</button>
+				  </div>
+				</div>
+			</form>
+			<!-- Search results here -->
+			<div id="RDProjectResults">
+				{% include 'quality/includes/searchRDProjects.html' %}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='card-header insertHeader'>
+	<div class="row h-100">
+		<span class="col my-auto dropToggle" id="editProductType_heading" data-target="#viewEditProductType" data-toggle="collapse" style="margin-left: 1em;">View/Edit a product</span>
+	</div>
+</div>
+<div class='collapse' id='viewEditProductType'>
+	<div class='card-body' style="background-color: #E0E0E0;">
+		<div class="text-dark padding-1em-lr">
+			<span id="addObjectHeading" style="padding-bottom: 1em; font-weight: bold;">First search for a product, then view details.</span>
+			<hr>
+			<form class='searchQuality-form' method='GET' action='.' data-url="{% url 'quality:quality_handlePagination' %}" ajaxStatus="search_EDIT_BatchProductPaginate">
+				<!-- Input box here -->
+				<div class="input-group mb-3">
+				  <input id="searchProductTypeInput" type="text" name="searchObjectFieldText" class="searchField col-8 col-sm-8 form-control" placeholder="Search for a product" aria-label="Search for a product" aria-describedby="basic-addon2">
+				  <div class="input-group-prepend col-4 col-sm-4" >
+				    <button class="btn btn-dark text-white" type="submit" id="searchProductType_Submit">Go!</button>
+				  </div>
+				</div>
+			</form>
+			<!-- Search results here -->
+			<div id="batchProductResults">
+				{% include 'quality/includes/searchBatchProducts.html' %}
+			</div>
+		</div>
+	</div>
+</div>

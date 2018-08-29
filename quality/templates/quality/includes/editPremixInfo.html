@@ -1,0 +1,72 @@
+{% csrf_token %}
+	<div class="container">
+		<div class="row" style="margin-top: 0.5em">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.dateIssued.errors }}
+			    	<label for="{{ subForm.dateIssued.id_for_label }}">Batch issued</label>
+			    {{ subForm.dateIssued }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.dateLoaded.errors }}
+			    	<label for="{{ subForm.dateLoaded.id_for_label }}">Date loaded</label>
+			    {{ subForm.dateLoaded }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.datePremixPassed.errors }}
+			    	<label for="{{ subForm.datePremixPassed.id_for_label }}">Date premix passed</label>
+			    {{ subForm.datePremixPassed }}
+			</div>
+		</div>
+		<br>
+		<div class="row" style="margin-top: 0.5em">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.initialPremixViscosity.errors }}
+			    	<label for="{{ subForm.initialPremixViscosity.id_for_label }}">Initial premix viscosity</label>
+			    {{ subForm.initialPremixViscosity }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalPremixViscosity.errors }}
+			    	<label for="{{ subForm.finalPremixViscosity.id_for_label }}">Final premix viscosity</label>
+			    {{ subForm.finalPremixViscosity }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.initialViscosityUnit.errors }}
+			    	<label for="{{ subForm.initialViscosityUnit.id_for_label }}">Viscosity Unit</label>
+			    {{ subForm.initialViscosityUnit }}
+			</div>
+		</div>
+		<br>
+		<div class="row" style="margin-top: 0.5em">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.initialFog.errors }}
+			    	<label for="{{ subForm.initialFog.id_for_label }}">Initial FOG (um)</label>
+			    {{ subForm.initialFog }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalFog.errors }}
+			    	<label for="{{ subForm.finalFog.id_for_label }}">Final FOG (um)</label>
+			    {{ subForm.finalFog }}
+			</div>
+		</div>
+		<br>
+		<div class="row" style="margin-top: 0.5em">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.premixMachine.errors }}
+			    	<label for="{{ subForm.premixMachine.id_for_label }}">Premix Machine</label>
+			    {{ subForm.premixMachine }}
+			</div>
+		</div>
+		<br>
+		<div class="updatedArea">
+			<button id="addPremixInfo_Submit" class="btn btn-dark text-white" type="submit" style="margin-right: 1em;">
+			<i class="fas fa-check"></i><span></span>
+			</button>
+		</div>
+		<br>
+	</div>
+
+
+	
+
+
+

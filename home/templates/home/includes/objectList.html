@@ -1,0 +1,88 @@
+<div class="card border-light" style="width: 100%; min-height: 14em;">
+	{% if paginatedUserToDos.paginator.count == 0 %}
+		<div class="UserToDo">
+			<div class="card-body">
+				<span class="my-auto"><p class="col-12" style="text-align: center;">No data here!</p></span>
+			</div>
+		</div>
+    {% else %}
+
+		{% for UserToDo in paginatedUserToDos %}
+			<div id="UserToDo">				
+				<div class="card-header" id="UserToDo_heading" style="border-left: 0.15em solid #FF6F00 !important;">
+					<div class="row h-100">
+						<span class="col-1 col-sm-1 my-auto" style="color: #1976D2;"><i class="fas fa-list fa-sm"></i></span>
+						<span class="col-6 col-sm-8 my-auto"><span id="UserToDo_subject" data-target="#UserToDo_{{ UserToDo.id }}" data-toggle="collapse" class="dropToggle">{{UserToDo.subject}}</span></span>
+						<div class="col float-right my-auto">
+							<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#UserToDo_Edit_{{ UserToDo.id }}" data-toggle="collapse" id="editUserToDo_Toggle"><a id='edit' data-location="{% url 'home:edit_UserToDo' UserToDo.id %}"><i class="fas fa-edit fa-sm"></i></a></p>
+							<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#UserToDo_Delete{{ UserToDo.id }}" data-toggle="collapse" id="deleteUserToDo_Toggle"><a id='delete'><i class="fas fa-trash-alt fa-sm"></i></a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="collapse" id="UserToDo_Delete{{ UserToDo.id }}">
+					<div class="bg-secondary text-white">
+					{% include 'home/includes/deleteUserToDoForm.html' %}
+					</div>	
+				</div>
+
+				<div class="collapse" id="UserToDo_Edit_{{ UserToDo.id }}">
+					<div class="bg-secondary text-white">
+						<div class="form">	
+								<form class='editObjectForm' method='POST' action='.' data-url="{% url 'home:edit_UserToDo' UserToDo.id %}" ajaxStatus="editUserToDoForm" style="width: 100% !important;">
+								{% include 'home/includes/editUserToDo.html' %}	
+								</form>							
+						</div>	
+					</div>	
+				</div>
+
+				<div class="collapse" id="UserToDo_{{ UserToDo.id }}">
+					<div style="border-left: 2px solid #42A5F5;">
+						<div data-target="#addUserNote_{{ UserToDo.id }}" data-toggle="collapse">
+							<div class="col-sm-12 dropToggle padding-1em-tb" id="addUserNote_Toggle"><i class="fas fa-plus fa-sm" style="margin-left: 1em;"></i><span style="padding-left: 1em;">Insert a task</span></div>
+						</div>
+						<div class="collapse" id="addUserNote_{{ UserToDo.id }}">
+							<div class="card-body bg-secondary text-light" style="margin-bottom: 1em;">
+								<div class="padding-1em-lr">
+									{% include 'home/includes/addUserNoteForm.html' %}							
+								</div>
+							</div>		
+						</div>
+						{% if UserToDo.getUserNotes%}
+							{% include 'home/includes/userNotes.html' %}	
+						{% else %}
+							<div class="card-body">
+								<div class="row h-100">
+									<span class="col-sm-12" style="display: inline-block;">Nothing here yet!</span>	
+								</div>
+							</div>
+						{% endif %}		
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+
+	{% endif %}
+</div>
+
+<div class="card mb-3" style="width: 100%; border-top: 1px solid #1976D2 !important;">
+	<div class="UserToDo">
+		<div class="card-header" data-toggle="collapse">
+			<div class="container pagination">
+			    <span class="step-links">
+			        {% if paginatedUserToDos.has_previous %}
+			            <a class="dropToggle text-dark" id="paginationPrevious" ajaxStatus="refreshObjectList" data-url="{% url 'home:home_handlePagination' %}" style="color: #1976D2 !important;">Previous</a>
+			        {% endif %}
+
+			        <span class="current">
+			            Page {{ paginatedUserToDos.number }} of {{ paginatedUserToDos.paginator.num_pages }}
+			        </span>
+
+			        {% if paginatedUserToDos.has_next %}
+			            <a class="dropToggle text-dark" id="paginationNext" class="text-dark" ajaxStatus="refreshObjectList" data-url="{% url 'home:home_handlePagination' %}" style="color: #1976D2 !important;">Next</a>
+			        {% endif %}
+			    </span>
+			</div>
+		</div>
+	</div>
+</div>

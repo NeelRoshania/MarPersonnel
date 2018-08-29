@@ -1,0 +1,104 @@
+/*C:\Users\nrosh\Anaconda2\Scripts\PROJECTS\PYTHON\DJANGO\acpersonnel\production\static\production\css/main.css*/
+
+#addProductionForm{
+	display: none;
+}
+
+#searchProductionForm {
+	display: none;
+}
+
+#productionMeetings {
+	/*background-color: #00796B; /*MATERIAL DESIGN - 700*/*/
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-position: 50% 70%; 
+	min-height: 8em;
+	max-height: 20em;
+}
+
+#productionMeeting_heading:hover {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #B2DFDB !important; /*MATERIAL DESIGN - 400*/
+	font-weight: bold;
+	transition:.5s;
+}
+
+#productionNoteHeader:hover {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #4DB6AC !important; /*MATERIAL DESIGN - 300*/
+	color: white !important;
+	font-weight: bold;
+	transition:.5s;
+}
+
+#rmShortageHeader:hover {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #4DB6AC !important; /*MATERIAL DESIGN - 300*/
+	color: white !important;
+	font-weight: bold;
+	transition:.5s;
+}
+
+#maintenanceIssueHeader:hover {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #4DB6AC !important; /*MATERIAL DESIGN - 300*/
+	color: white !important;
+	font-weight: bold;
+	transition:.5s;
+}
+
+#productionPlanHeader:hover {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #B2DFDB !important; /*MATERIAL DESIGN - 300*/
+	color: white !important;
+	font-weight: bold;
+	transition:.5s;
+}
+
+.productionMeetingCards_clicked {
+	background-color: #4DB6AC !important; /*MATERIAL DESIGN - 300*/
+	color: white !important;
+}
+
+.productionMeeting_clicked {
+	background-color: #B2DFDB !important; /*MATERIAL DESIGN - 400*/
+	margin: 1em 0em;
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+	/*margin-bottom: 1em;*/
+}
+
+#addProductionNote_Toggle:hover{
+	font-weight: bold;
+}
+
+#addRawMaterial_Toggle:hover{
+	font-weight: bold;
+}
+
+#addMaintenanceIssue_Toggle:hover{
+	font-weight: bold;
+}
+
+#productionMeeting_heading4:hover{
+	font-weight: bold;
+}

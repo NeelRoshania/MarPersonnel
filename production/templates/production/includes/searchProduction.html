@@ -1,0 +1,178 @@
+{% csrf_token %}
+
+<form class='searchProductionForm' id='search_ProductionMeetings' method='GET' action='.' data-url="{% url 'production:search_productionPagination' %}" ajaxStatus='search_ProductionMeetings'>
+
+	<div class="card-header insertHeader">
+		<div class="row h-100">
+			<span class="col-12 col-sm-12 my-auto dropToggle" id="searchHeading" data-target="#productionMeetings_search" data-toggle="collapse" style="margin-left:1em;">Search production meetings</span>	
+		</div>
+	</div>
+
+	<div class="collapse" id="productionMeetings_search">
+		<div class="bg-light text-dark form">
+			<span id="addObjectHeading" style="font-weight: bold;">Choose a filter, and enter the keyword.</span>
+			<hr>
+			<div class="container">	
+				<div class="row">
+					{% for field in productionMeeting_Form %}
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="radio" id="inlineRadio_UserToDo_{{forloop.counter}}" value='{{ field.label_tag|striptags|cut:":"|lower }}'>
+						  <label class="form-check-label" for="inlineRadio_UserToDo_{{forloop.counter}}">{{ field.label_tag|striptags }}</label>
+						</div>
+					{% endfor %}	
+				</div>									
+			</div>
+			<br>
+			<div class="input-group mb-3">
+				<!-- Use the name parameter to grab the data during jQuery seriablization -->
+				<input id="search_ProductionMeetings_Field" type="text" name="searchObjectFieldText" class="searchField col-8 col-sm-8 form-control" placeholder="What's the keyword?" aria-label="" aria-describedby="basic-addon1">
+				<div class="input-group-prepend col-4 col-sm-4">
+					<button id="searchUserToDo_submit" class="btn btn-dark text-white" type="submit">Go!</button>
+				</div>	
+			</div>
+		</div>
+	</div>
+</form>
+
+
+<form class='searchProductionForm' id='search_ProductionNotes' method='GET' action='.' data-url="{% url 'production:search_productionPagination' %}" ajaxStatus='search_ProductionNotes'>
+
+	<div class="card-header insertHeader">
+		<div class="row h-100">
+			<span class="col-12 col-sm-12 col-sm-8 my-auto dropToggle" id="searchHeading" data-target="#productionNotes_search" data-toggle="collapse"><span style="margin-left:1em;">Search production notes</span></span>		
+		</div>
+	</div>
+	<div class="collapse" id="productionNotes_search">
+		<div class="bg-light text-dark form">
+
+			<span id="addObjectHeading" style="font-weight: bold;">Choose a filter, and enter the keyword.</span>
+			<hr>
+			<div class="container">	
+				<div class="row">
+					{% for field in productionNote_Form %}
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="radio" id="inlineRadio_UserToDo_{{forloop.counter}}" value='{{ field.label_tag|striptags|cut:":"|lower }}'>
+						  <label class="form-check-label" for="inlineRadio_UserToDo_{{forloop.counter}}">{{ field.label_tag|striptags }}</label>
+						</div>
+					{% endfor %}
+				</div>									
+			</div>
+			<br>
+			<div class="input-group mb-3">
+				<!-- Use the name parameter to grab the data during jQuery seriablization -->
+				<input id="search_ProductionNotes_Field" type="text" name="searchObjectFieldText" class="searchField col-8 col-sm-8 form-control" placeholder="What's the keyword?" aria-label="" aria-describedby="basic-addon1">
+				<div class="input-group-prepend col-4 col-sm-4">
+					<button id="searchUserToDo_submit" class="btn btn-dark text-white" type="submit">Go!</button>
+				</div>	
+			</div>
+
+		</div>
+	</div>
+</form>
+
+
+<form class='searchProductionForm' id='search_RMShortages' method='GET' action='.' data-url="{% url 'production:search_productionPagination' %}" ajaxStatus='search_RMShortages'>
+
+	<div class="card-header insertHeader">
+		<div class="row h-100">
+			<span class="col-12 col-sm-12 my-auto dropToggle" id="searchHeading" data-target="#RMShortages_search" data-toggle="collapse"><span style="margin-left:1em;">Search raw material shortages</span></span>		
+		</div>
+	</div>
+	<div class="collapse" id="RMShortages_search">
+		<div class="bg-light text-dark form">
+
+			<span id="addObjectHeading" style="font-weight: bold;">Choose a filter, and enter the keyword.</span>
+			<hr>
+			<div class="container">	
+				<div class="row">
+					{% for field in rmShortage_Form %}
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="radio" id="radio_RMSHortage_{{forloop.counter}}" value='{{ field.label_tag|striptags|cut:":"|lower }}'>
+						  <label class="form-check-label" for="radio_RMSHortage_{{forloop.counter}}">{{ field.label_tag|striptags }}</label>
+						</div>
+					{% endfor %}
+				</div>						
+			</div>
+			<hr>
+			<div class="container">	
+				<div class="row">
+					<span class="col-12 col-sm-12 col-md-2" style="font-weight: bold; padding: 0; margin: 0;">Status options:</span>
+					<ul class="col-12 col-sm-12 col-md-5" style="list-style-type: none; padding: 0; margin: 0;">
+						<li>Caution</li>
+						<li>Awaiting delivery</li>
+						<li>To Place Order</li>
+						<li>Resolved</li>
+					</ul>
+				</div>	
+			</div>	
+			<br>
+			<div class="input-group mb-3">
+				<!-- Use the name parameter to grab the data during jQuery seriablization -->
+				<input id="search_RMShortage_Field" type="text" name="searchObjectFieldText" class="searchField col-8 col-sm-8 form-control" placeholder="What's the keyword?" aria-label="" aria-describedby="basic-addon1">
+				<div class="input-group-prepend col-4 col-sm-4">
+					<button id="searchUserNote_submit" class="btn btn-dark text-white" type="submit">Go!</button>
+				</div>	
+			</div>
+
+		</div>
+	</div>
+</form>
+
+
+<form class='searchProductionForm' id='search_MaintenanceIssues' method='GET' action='.' data-url="{% url 'production:search_productionPagination' %}" ajaxStatus='search_MaintenanceIssues'>
+
+	<div class="card-header insertHeader">
+		<div class="row h-100">
+			<span class="col-12 col-sm-12 my-auto dropToggle" id="searchHeading" data-target="#MaintenanceIssues_search" data-toggle="collapse"><span style="margin-left:1em;">Search maintenance issues</span></span>		
+		</div>
+	</div>
+	<div class="collapse" id="MaintenanceIssues_search">
+		<div class="bg-light text-dark form">
+
+			<span id="addObjectHeading" style="font-weight: bold;">Choose a filter, and enter the keyword.</span>
+			<hr>
+			<div class="container">	
+				<div class="row">
+					{% for field in maintenanceIssue_Form %}
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="radio" id="inlineRadio_UserNote_{{forloop.counter}}" value='{{ field.label_tag|striptags|cut:":"|lower }}'>
+						  <label class="form-check-label" for="inlineRadio_UserNote_{{forloop.counter}}">{{ field.label_tag|striptags }}</label>
+						</div>
+					{% endfor %}	
+				</div>									
+			</div>
+			<hr>
+			<div class="container">	
+				<div class="row">
+					<span class="col-12 col-sm-12 col-md-2" style="font-weight: bold; padding: 0; margin: 0;">Type of issue:</span>
+					<ul class="col-12 col-sm-12 col-md-5" style="list-style-type: none; padding: 0; margin: 0;">
+						<li>Other</li>
+						<li>Lab scale</li>
+						<li>Ball mill</li>
+						<li>High speed</li>
+						<li>Fork lift</li>
+						<li>Slow speed</li>
+					</ul>
+				</div>	
+			</div>	
+			<br>
+			<div class="container">	
+				<div class="row">
+					<span class="col-12 col-sm-12 col-md-2" style="font-weight: bold; padding: 0; margin: 0;">Status:</span>
+					<ul class="col-12 col-sm-12 col-md-5" style="list-style-type: none; padding: 0; margin: 0;">
+						<li>Unresolved</li>
+						<li>Completed</li>
+					</ul>
+				</div>	
+			</div>	
+			<br>
+			<div class="input-group mb-3">
+				<!-- Use the name parameter to grab the data during jQuery seriablization -->
+				<input id="search_MaintenanceIssue_Field" type="text" name="searchObjectFieldText" class="searchField col-8 col-sm-8 form-control" placeholder="What's the keyword?" aria-label="" aria-describedby="basic-addon1">
+				<div class="input-group-prepend col-4 col-sm-4">
+					<button id="search_MaintenanceIssues_submit" class="btn btn-dark text-white" type="submit">Go!</button>
+				</div>	
+			</div>
+		</div>
+	</div>
+</form>	

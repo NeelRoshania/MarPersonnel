@@ -1,0 +1,40 @@
+/*C:\Users\nrosh\Anaconda2\Scripts\PROJECTS\PYTHON\DJANGO\acpersonnel\production\static\production\css/main.css*/
+
+#addDeliveryRouteForm{
+	display: none;
+}
+
+#searchDeliveryRoutesForm {
+	display: none;
+}
+
+#deliveryPlans {
+	/*background-color: #827717; /*MATERIAL DESIGN - 700*/*/
+	background-repeat: no-repeat;
+	background-size: cover; 
+	background-position: 50% 57%; 
+	min-height: 8em;
+	max-height: 20em;
+}
+
+#deliveryPlan_header:hover {
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	background-color: #D4E157 !important; /*MATERIAL DESIGN - 400*/
+	font-weight: bold;
+	transition:.5s;
+}
+
+.deliveryPlan_clicked {
+	background-color: #D4E157 !important; /*MATERIAL DESIGN - 400*/
+	margin-top: 1em;
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+	margin: 1em 0em;
+}
+

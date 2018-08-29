@@ -1,0 +1,68 @@
+
+{% csrf_token %}
+
+<form class='searchObjectForm' id='search_UserToDo' method='POST' action='.' data-url="{% url 'home:home_handlePagination' %}" ajaxStatus='searchUserToDo'>
+
+	<div class="card-header insertHeader">
+		<div class="row h-100">
+			<span class="col-12 col-sm-8 my-auto dropToggle" id="searchHeading" data-target="#thingsToDoList" data-toggle="collapse"><span style="margin-left:1em;">Things to Do</span></span>		
+		</div>
+	</div>
+	<div class="collapse" id="thingsToDoList">
+		<div class="bg-light text-dark form">
+			<span id="addObjectHeading" style="font-weight: bold;">Choose a filter, and enter the keyword.</span>
+			<hr>
+			<div class="container" style="margin: 1em 0em;">	
+				<div class="row">
+					{% for field in userToDo_Form %}
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="radio" id="inlineRadio_UserToDo_{{forloop.counter}}" value='{{ field.label_tag|striptags|cut:":"|lower }}'>
+						  <label class="form-check-label" for="inlineRadio_UserToDo_{{forloop.counter}}">{{ field.label_tag|striptags }}</label>
+						</div>
+					{% endfor %}	
+				</div>									
+			</div>
+			<br>
+			<div class="input-group mb-3">
+				<!-- Use the name parameter to grab the data during jQuery seriablization -->
+				<input class="searchField col-8 col-sm-8 form-control" id="search_UserToDo_Field" type="text" name="searchObjectFieldText" placeholder="What's the keyword?" aria-label="" aria-describedby="basic-addon1">
+				<div class="input-group-prepend col-4 col-sm-4">
+					<button id="searchUserToDo_submit" class="btn btn-dark text-white" type="submit">Go!</button>
+				</div>	
+			</div>
+		</div>
+	</div>
+</form>
+
+<form class='searchObjectForm' id='search_UserNote' method='POST' action='.' data-url="{% url 'home:home_handlePagination' %}" ajaxStatus='searchUserNote'>
+
+	<div class="card-header insertHeader">
+		<div class="row h-100">
+			<span class="col-12 col-sm-8 my-auto dropToggle" id="searchHeading" data-target="#taskList" data-toggle="collapse"><span style="margin-left:1em;">Task Note</span></span>		
+		</div>
+	</div>
+	<div class="collapse" id="taskList">
+		<div class="bg-light text-dark form">
+			<span id="addObjectHeading" style="font-weight: bold;">Choose a filter, and enter the keyword.</span>
+			<hr>
+			<div class="container" style="margin: 1em 0em;">	
+				<div class="row">
+					{% for field in userNote_Form %}
+						<div class="form-check form-check-inline">
+						  <input class="form-check-input" type="radio" name="radio" id="inlineRadio_UserNote_{{forloop.counter}}" value='{{ field.label_tag|striptags|cut:":"|lower }}'>
+						  <label class="form-check-label" for="inlineRadio_UserNote_{{forloop.counter}}">{{ field.label_tag|striptags }}</label>
+						</div>
+					{% endfor %}	
+				</div>									
+			</div>
+			<br>
+			<div class="input-group mb-3">
+				<!-- Use the name parameter to grab the data during jQuery seriablization -->
+				<input class="searchField col-8 col-sm-8 form-control" id="search_UserNote_Field" type="text" name="searchObjectFieldText" placeholder="What's the keyword?" aria-label="" aria-describedby="basic-addon1">
+				<div class="input-group-prepend col-4 col-sm-4">
+					<button id="searchUserNote_submit" class="btn btn-dark text-white" type="submit">Go!</button>
+				</div>	
+			</div>
+		</div>
+	</div>
+</form>

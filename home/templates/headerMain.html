@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Marindec Paints (PTY) LTD</title>
+	{% load staticfiles %}
+	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- BOOTSTRAP PLUGINS -->
+	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Additional Stylesheets -->
+  	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="{% static 'home/css/main.css' %}?{% now 'U' %}"/>
+	<link rel="stylesheet" href="{% static 'production/css/production.css' %}?{% now 'U' %}"/>
+	<link rel="stylesheet" href="{% static 'sales/css/sales.css' %}?{% now 'U' %}"/>
+	<link rel="stylesheet" href="{% static 'quality/css/quality.css' %}?{% now 'U' %}"/>
+
+	<!-- Additional JS -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+
+</head>
+
+	<!-- Google Analytics Scripting -->
+<!-- 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110960398-1"></script>
+	<script src="{% static 'home/js/googleAnalytics.js' %}?{% now 'U' %}"></script> -->
+
+
+<body>	
+	{% load staticfiles %}
+	<!-- https://docs.djangoproject.com/en/1.9/ref/csrf/
+
+		If you activate CSRF_USE_SESSIONS, you must include the CSRF token in your HTML and read the token from the DOM with JavaScript: 
+
+	-->
+	{% csrf_token %}
+	<!-- Finally, you’ll have to actually set the header on your AJAX request, while protecting the CSRF token from being sent to other domains  -->
+	<script>
+		// This scrip gets the cookie generated above, and sets it up as header for any ajax request made on seperate scripts
+		var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+		console.log("Generated csrftoken: " + csrftoken)
+
+		function csrfSafeMethod(method) {
+		    // these HTTP methods do not require CSRF protection
+		    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+
+		$.ajaxSetup({
+		    beforeSend: function(xhr, settings) {
+		        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+		            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+		        }
+		    }
+		});
+	</script>
+
+	<div class="jumbotron">
+		<div class="">
+			<div class="row">
+				{% include 'userList.html' %}
+			</div>
+	  	</div>
+		
+		{% block notification %}
+		{% endblock %}
+
+		{% block userToDo %}
+		{% endblock %}
+
+		<br>
+
+		{% include 'production/home.html' %}
+		{% block production %}
+		{% endblock %}
+
+		<br>
+
+		{% include 'sales/home.html' %}
+		{% block sales %}
+		{% endblock %}
+
+		<br>
+
+		<br>
+
+		{% include 'quality/home.html' %}
+		{% block quality %}
+		{% endblock %}
+		
+	</div>
+	<div id="notificationPanel"></div>
+
+</body>
+
+<footer> 
+	<script src="{% static 'home/js/handlerFunctions.js' %}?{% now 'U' %}" type="module"></script>
+	<script src="{% static 'home/js/JS_userToDo.js' %}?{% now 'U' %}" type="module"></script>
+	<script src="{% static 'home/js/JS_handleInteractions.js' %}?{% now 'U' %}" type="module"></script>
+	<script src="{% static 'home/js/JS_handleLostConnection.js' %}?{% now 'U' %}" type="module"></script>
+	<script src="{% static 'production/js/JS_production.js' %}?{% now 'U' %}" type="module"></script>
+	<script src="{% static 'sales/js/JS_sales.js' %}?{% now 'U' %}" type="module"></script>
+	<script src="{% static 'quality/js/JS_quality.js' %}?{% now 'U' %}" type="module"></script>
+
+	
+</footer>
+
+
+</html>

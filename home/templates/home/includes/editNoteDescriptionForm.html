@@ -1,0 +1,24 @@
+
+
+{% csrf_token %}
+<h5 id="editUserNote_heading">Edit this note</h5>
+<hr style="border-color: white !important;">
+<br>
+
+<div style="width: 100% !important;">
+    {{ subForm.description.errors }}
+    	<label for="{{ subForm.description.id_for_label }}">Description</label>
+    {{ subForm.description }}
+</div>
+<div class="" style="margin-top: 1em !important;">
+    {{ subForm.noteDescriptionProgress.errors }}
+    	<label for="{{ subForm.noteDescriptionProgress.id_for_label }}">Progress</label>
+    {{ subForm.noteDescriptionProgress }}
+</div>
+<br>
+<div class="updatedArea">
+	<button id="edit_NoteDescription_Submit" class="btn btn-primary" type="submit" style="margin-right: 1em;">
+	<i class="fas fa-check"></i><span style="padding-left: 1em;">Update</span>
+	</button>
+</div>
+<hr>

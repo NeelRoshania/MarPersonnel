@@ -1,0 +1,68 @@
+
+<div class="card border-light" style="width: 100%; min-height: 14em;">
+	{% if paginated_Sales.paginator.count == 0 %}
+		<div class="object">
+			<div class="card-body">
+				<span class="my-auto"><p class="col-12" style="text-align: center;">No data here!</p></span>
+			</div>
+		</div>
+
+    {% else %}
+
+		{% for object in paginated_Sales %}
+				<div id="DeliveryPlanList">				
+					<div class="card-header bg-light" id="productionMeeting" data-target="#cardProduction{{ object.id }}" data-toggle="collapse">
+						<div class="row h-100">
+							<span class="col-1 col-sm-1 dropToggle my-auto"><i class="fas fa-angle-double-down fa-sm"></i></span>
+							{% if object.active != "Delivered" %}
+								<p class="col-4 col-sm-8 my-auto dropToggle text-danger" id="deliveryPlan_subject">{{object.customerID}}</p>
+							{% else %}
+								<p class="col-4 col-sm-8 my-auto dropToggle text-success" id="deliveryPlan_subject">{{object.customerID}}</p>
+							{% endif %}
+							<div class="col col float-right my-auto">
+								<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#editDeliveryPlan_{{ object.id }}" data-toggle="collapse" id="editDeliveryPlan_Toggle"><a id='edit' data-location="{% url 'sales:edit_DeliveryPlan' object.id %}" ajaxStatus="editDeliveryPlanForm"><i class="fas fa-edit fa-sm"></i></a></p>
+								<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#updateDeliveryPlan{{ object.id }}" data-toggle="collapse" id="confirmDeliveryPlan_Toggle"><a id='delete' ajaxStatus="deleteProductionMeetingForm"><i class="fas fa-check fa-sm"></i></a></p>
+							</div>
+							<div class="collapse" id="updateDeliveryPlan{{ object.id }}">
+								{% include 'sales/includes/confirmDeliveryOfDeliveryPlanForm.html' %}
+							</div>	
+							<div class="collapse" id="editDeliveryPlan_{{ object.id }}">
+								<div class="bg-secondary text-white">
+									<div class="form">	
+										<form class='editSalesForm' method='POST' action='.' data-url="{% url 'sales:edit_DeliveryPlan' object.id %}" ajaxStatus="editDeliveryPlanForm">
+											<div class="editDeliveryPlanForm">
+												{% include 'sales/includes/editDeliveryPlanForm.html' %}	
+											</div>
+										</form>
+									</div>									
+								</div>
+							</div>				
+						</div>
+					</div>	
+				</div>
+		{% endfor %}
+
+	{% endif %}
+</div>
+
+<div class="card border-light mb-3" style="width: 100%; border-top: 1px solid #827717 !important;">
+	<div class="paginationBlock">
+		<div class="card-header" data-toggle="collapse">
+			<div class="container pagination">
+			    <span class="step-links">
+			        {% if paginated_Sales.has_previous %}
+			            <a class="dropToggle text-dark" id="salesPaginationPrevious" data-url="{% url 'sales:deliveryPlan_handlePagination' %}" ajaxStatus="refreshDeliveryPlanList" style="color: #827717 !important;">Previous</a>
+			        {% endif %}
+
+			        <span class="current">
+			            Page {{ paginated_Sales.number }} of {{ paginated_Sales.paginator.num_pages }}
+			        </span>
+
+			        {% if paginated_Sales.has_next %}
+			            <a class="dropToggle text-dark" id="salesPaginationNext" data-url="{% url 'sales:deliveryPlan_handlePagination' %}" ajaxStatus="refreshDeliveryPlanList" style="color: #827717 !important;">Next</a>
+			        {% endif %}
+			    </span>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Marindec Paints (PTY) LTD</title>
+	<meta charset="utf-8" />
+	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'home/css/main.css' %}"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
+	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+	
+
+</head>
+
+<body>
+	<div class="row">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<div class="container">
+					<div class="col-md-12 col-lg-5">
+						<a class="navbar-brand" href="{% url 'home:index' %}">Marindec Paints (PTY) LTD</a>
+					</div>
+				</div>
+			
+		</nav>
+  	</div>
+
+	<div class="jumbotron">
+		<div class='row'>
+			<div class="container">
+				{% block notification %}
+				{% endblock %}
+			</div>
+		</div>
+
+		<div class='row'>
+			<div class="container">
+				<div class="card" style="width: 100%;">
+						<div class='container'>
+							<h4>Page not found!</h4>
+							<h6 class="card-subtitle mb-2 text-muted">Hope you're not trying to be sneaky!</h6>
+							<br>
+						</div>
+				</div>
+			</div>
+		</div>
+		
+	</div> 
+</body>
+
+<footer>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+</footer>
+
+
+</html>

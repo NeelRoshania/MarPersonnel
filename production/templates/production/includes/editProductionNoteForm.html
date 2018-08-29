@@ -1,0 +1,20 @@
+{% csrf_token %}
+<h5 id="editProductionNote_header">Change the information of this production note.</h5>
+<hr style="border-color: white !important;">
+<div class="row">
+	{% for field in subForm %}
+	<!-- Anything larger than medium screen res gets spacing of 4 -->
+	<div class="col margin-1em-tb">
+		<span class=''
+		> {{ field.label_tag }}</span>
+		<span class=''> {{ field }} </span>
+	</div>
+	{% endfor %}
+</div>
+<br>
+
+<div class="updatedArea">
+	<button class="btn btn-primary" id="edit_ProductionNote_Submit" type="submit" style="margin-right: 1em;">
+	<i class="fas fa-check"></i><span style="padding-left: 1em;">Update</span>
+	</button>
+</div>

@@ -1,0 +1,69 @@
+<div id="subObject">
+	<p class="my-auto dropToggle" id="editQuality_header" style="font-weight: bold; padding: 1em 1em !important;" data-toggle="collapse" data-target="#editPremixInfo_{{ object.id }}"><a id='edit' data-location="{% url 'quality:edit_QualityPlan' object.id %}"  ajaxStatus="editPremixInformation"><span id="editPremixInfo"><i class="fas fa-edit fa-sm dropToggle"></i><span style="margin-left:1em"> Edit premix information</span></span></a></p>
+	<div class="collapse" id="editPremixInfo_{{ object.id }}" style="margin-bottom: 1em;">
+		<div class="bg-secondary text-white">
+			<div class="form">
+				<form class='editQualityForm' method='POST' action='.' data-url="{% url 'quality:edit_QualityPlan' object.id %}" ajaxStatus="editPremixInformation">
+					<div class="editPremixInformation">
+					</div>
+				</form>
+			</div>
+		</div>		
+	</div>
+	<!-- table headings -->
+	<div class="container">
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Premix Machine</span>
+			<span class="col-sm-3 col-md-4" id="dateIssued_{{forloop.counter}}">{{object.premixMachine}}</span>
+		</div>
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Date issued</span>
+			<span class="col-sm-3 col-md-4" id="dateIssued_{{forloop.counter}}">{{object.dateIssued}}</span>
+		</div>	
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Date loaded</span>
+			<span class="col-sm-3 col-md-4" id="dateLoaded_{{forloop.counter}}">{{object.dateLoaded}}</span>
+		</div>	
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Date premix passed</span>
+			<span class="col-sm-3 col-md-4" id="datePremixPass_{{forloop.counter}}">{{object.datePremixPassed}}</span>
+		</div>	
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Initial Premix FOG</span>
+			<span class="col-sm-3 col-md-4" id="initialPremixFOG_{{forloop.counter}}">
+			{% if object.initialFog != none %}
+				{{object.initialFog}} um
+			{% else %}
+				Not specified
+			{% endif %}</span>
+		</div>
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Initial premix viscosity</span>
+			<span class="col-sm-3 col-md-4" id="initialVisc_{{forloop.counter}}">
+			{% if object.initialPremixViscosity != none %}
+				{{object.initialPremixViscosity}}&nbsp{{object.initialViscosityUnit}}
+			{% else %}
+				Not specified
+			{% endif %}</span>					
+		</div>
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final premix viscosity</span>
+			<span class="col-sm-3 col-md-4" id="initialVisc_{{forloop.counter}}">
+			{% if object.finalPremixViscosity != none %}
+				{{object.finalPremixViscosity}}&nbsp{{object.initialViscosityUnit}}
+			{% else %}
+				Not specified
+			{% endif %}</span>					
+		</div>
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final Premix FOG</span>
+			<span class="col-sm-3 col-md-4" id="finaPremixFOG_{{forloop.counter}}">
+			{% if object.finalFog != none %}
+				{{object.finalFog}} um
+			{% else %}
+				Not specified
+			{% endif %}</span>					
+		</div>
+	</div>
+	<br>
+</div>	

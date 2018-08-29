@@ -1,0 +1,20 @@
+
+{% csrf_token %}
+<h5 id="addObjectHeading" style="border-bottom: 1px solid white; padding-bottom: 1em;">Log a maintenance issue for this meeting, <span style="font-style: italic; font-weight: bold;">"{{object.subject}}"<span></h5>
+<br>
+<div class="row">
+	{% for field in maintenanceIssue_Form %}
+		<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			<p class='' style="margin: 0 !important;" > {{ field.label_tag }}</p>
+			<p id="addMaintenanceIssue_{{forloop.counter}}"> {{ field }} </p>
+		</div>
+	{% endfor %}
+</div>
+<br>
+
+<div class="updatedArea">
+	<button id="addMaintenanceIssue_Submit" class="btn btn-primary" type="submit" style="margin-right: 1em;">
+	<i class="fas fa-check"></i><span></span>
+	</button>
+</div>
+<br>

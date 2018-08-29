@@ -1,0 +1,23 @@
+{% csrf_token %}
+<h5 id="editUserToDo_heading">Edit this objective</h5>
+<hr style="border-color: white !important;">
+<br>
+
+<div class="row">
+	<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+	    {{ subForm.subject.errors }}
+	    	<label for="{{ subForm.subject.id_for_label }}">Subject</label>
+	    {{ subForm.subject }}
+	</div>
+	<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+	    {{ subForm.toDoProgress.errors }}
+	    	<label for="{{ subForm.toDoProgress.id_for_label }}">Progress</label>
+	    {{ subForm.toDoProgress }}
+	</div>
+</div>
+<br>
+<div class="updatedArea">
+	<button id="edit_UserToDo_Submit" class="btn btn-primary" type="submit" style="margin-right: 1em;">
+	<i class="fas fa-check"></i><span></span>
+	</button>
+</div>

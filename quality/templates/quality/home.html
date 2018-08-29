@@ -1,0 +1,25 @@
+<!-- GitHub Code: https://github.com/codingforentrepreneurs/AJAXify-Django-Forms -->
+{% load staticfiles %}
+{% block quality %}
+	<!-- Update list with ajax item -->
+	<div class="container">
+		<div class="objectHeader row text-white shadow" id="qualityPlans" style="background-image: url('{% static 'home/img/quality1.jpg' %}'); " artist="Christian Kainndl - https://unsplash.com/@christiankaindl">
+			<span class="col-11 col-sm-8 col-md-9 col-lg-9 my-auto text-light"><h5 class="float-left" style="margin: 0em 0.5em !important;">Quality Control</h5></span>
+			<div class="col col-sm-4 col-md-3 col-lg-3 my-auto text-light" >
+					<span class="my-auto padding-1em-lr" id="searchQuality"><i class="fas fa-search fa-sm dropToggle"></i></span>
+					<span class="my-auto padding-1em-lr" id="addQuality"><i class="fas fa-plus fa-sm dropToggle"></i></span>
+					<span class="my-auto padding-1em-lr" id="refreshQualityPlanList" data-url="{% url 'quality:update_quality' %}" ajaxStatus="refreshQualityPlanList"><i class="fas fa-sync fa-sm dropToggle"></i></span>
+			</div>
+		</div>
+		<div class="row shadow" id="searchQualityList">
+			{% include 'quality/includes/searchQuality.html' %}
+		</div>
+		<div class="row bg-secondary text-white shadow" id="addQualityList">
+			{% include 'quality/includes/addQualityListForm.html' %}
+		</div>
+		<div class="row" id="qualityList">	
+			{% include 'quality/includes/objectList.html' %}
+		</div>
+	</div>
+	<br>
+{% endblock %}

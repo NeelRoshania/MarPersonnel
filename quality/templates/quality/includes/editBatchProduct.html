@@ -1,0 +1,17 @@
+{% csrf_token %}
+<h5 id="addObjectHeading">Edit this product</h5>
+<hr style="border-color: white !important;">
+<div class="row">
+	{% for field in subForm %}
+		<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			<p class='' style="margin: 0 !important;" > {{ field.label_tag }}</p>
+			<p id="addRDProject_{{forloop.counter}}"> {{ field }} </p>
+		</div>
+	{% endfor %}
+</div>
+<br>
+<div class="updatedArea">
+	<button id="editProductType_Submit" class="btn btn-dark text-white" type="submit" style="margin-right: 1em;">
+	<i class="fas fa-check"></i><span></span>
+	</button>
+</div>

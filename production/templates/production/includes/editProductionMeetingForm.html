@@ -1,0 +1,19 @@
+{% csrf_token %}
+<h5 id="editProductionMeeting_header">Change the subject of this production meeting.</h5>
+<hr style="border-color: white !important;">
+<div class="row">
+	{% for field in subForm %}
+	<!-- Anything larger than medium screen res gets spacing of 4 -->
+	<div class="col margin-1em-tb">
+		<p class='' style="margin: 0 !important;"> {{ field.label_tag }}</p>
+		<p class=''> {{ field }} </p>
+	</div>
+	{% endfor %}
+</div>
+<br>
+
+<div class="updatedArea">
+	<button id="edit_ProductionMeeting_Submit" class="btn btn-primary" type="submit" style="margin-right: 1em;">
+	<i class="fas fa-check"></i><span style="padding-left: 1em;">Update</span>
+	</button>
+</div>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Marindec Paints (PTY) LTD</title>
+	{% load staticfiles %}
+	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- BOOTSTRAP PLUGINS -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- Additional Stylesheets -->
+
+	<link rel="stylesheet" href="{% static 'home/css/main.css' %}?{% now 'U' %}"/>
+
+	<!-- Additional JS -->
+
+
+</head>
+
+<body>
+	<div class="card shadow" style="background-color: #FAFAFA; max-width: 70%; margin: 0 auto; float: none; margin-top: 8em; 
+	margin-bottom: 8em;">
+		<div class="container">
+			<div class="row">
+				{% if form %}
+					<div>
+						<img class="card-img-top" src="/static/home/img/marindec1.jpg" style="object-fit: cover; height: 9em;">
+						<div class="card-img-overlay">
+							<h4 class="card-title" style="color: white; padding: 1em 0.5em;" artist="XiaoXiao Sun - https://unsplash.com/@smile_97" id="loginHeader">Welcome to Marindec!</h4>
+							<p class="bg-primary shadow" style="color: white; padding: 1em 1em;">Provide your login information below</p>
+							<div class="container">
+								<div class="row">
+									<form class="login" method='POST' action='.' data-url="{% url 'login-user' %}">
+										{% csrf_token %}
+										<div class="">
+											<div class="col-sm-12 col-md-12">
+							                	<input class="form-control col-12" id="{{ form.username.id_for_label }}"  name="{{ form.username.html_name }}" placeholder="{{ form.username.label }}" type="text" style="width: 90% !important; margin: 1em 0em;"/> 
+							                	<input class="form-control col-12" id="{{ form.password.id_for_label }}"  name="{{ form.password.html_name }}" placeholder="{{ form.password.label }}" type="password" style="width: 90% !important;"/> 
+							                	<button id="submit_login" class="btn btn-primary" type="submit" style="margin-top: 1em;">Login</button>
+							                </div>
+							            </div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				{% else %}
+					<div>
+						<img class="card-img-top" src="/static/home/img/marindec1.jpg" style="object-fit: cover; height: 8em;">
+						<div class="card-img-overlay">
+							<h4 class="card-title" style="color: white; padding: 1em 1em;" artist="XiaoXiao Sun - https://unsplash.com/@smile_97" id="loginHeader">You're logged out!</h4>
+							<p class="bg-primary shadow" style="color: white; padding: 1em 1em;">Have a great day!</p>
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+	
+	<div id="notificationPanel"></div>
+</body>
+
+<footer>
+	<script src="{% static 'home/js/JS_Login.js' %}?{% now 'U' %}" type="module"></script>
+</footer>
+
+
+</html>

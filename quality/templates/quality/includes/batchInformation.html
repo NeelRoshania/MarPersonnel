@@ -1,0 +1,89 @@
+<div id="subObject">
+	<p class="my-auto dropToggle" id="editQuality_header" style="font-weight: bold; padding: 1em 1em !important;"><a id='edit' data-location="{% url 'quality:edit_QualityPlan' object.id %}" data-toggle="collapse" data-target="#editBatchInformation_{{ object.id }}" ajaxStatus="editBatchInformation"><span id="editBatchInfo"><i class="fas fa-edit fa-sm dropToggle"></i><span style="margin-left:1em;">Edit batch information</span></span></a></p>
+	<div class="collapse" id="editBatchInformation_{{ object.id }}" style="margin-bottom: 1em;">
+		<div class="bg-secondary text-white">	
+			<div class="form">	
+				<form class='editQualityForm' method='POST' action='.' data-url="{% url 'quality:edit_QualityPlan' object.id %}" ajaxStatus="editBatchInformation">
+					<div class="editBatchInformation">
+					</div>
+				</form>
+			</div>									
+		</div>
+	</div>
+	<!-- Display headings -->
+	<div class="container">
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final specific gravity</span>
+			<span class="col-sm-3 col-md-4" id="finalSg_{{forloop.counter}}">
+			{% if object.finalSg != none %}
+				{{object.finalSg}} ml/g (L/Kg)
+			{% else %}
+				Not specified
+			{% endif %}</span>
+		</div>	
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final touch dry</span>
+			<span class="col-sm-3 col-md-4" id="finalTouchDry_{{forloop.counter}}">
+			{% if object.finalTouchDryUnit != none %}
+				{{object.finalTouchDry}}&nbsp{{object.finalTouchDryUnit}}
+			{% else %}
+				Not specified
+			{% endif %}</span>
+		</div>	
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final hard dry</span>
+			<span class="col-sm-3 col-md-4" id="finalHardDry_{{forloop.counter}}">
+			{% if object.finalHardDry != none %}
+				{{object.finalHardDry}}&nbsp{{object.finalHardDryUnit}}
+			{% else %}
+				Not specified
+			{% endif %}</span>
+		</div>	
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final DFT</span>
+			<span class="col-sm-3 col-md-4" id="finalDFT_{{forloop.counter}}">
+			{% if object.finalDft != none %}
+				{{object.finalDft}}um on WFT of&nbsp{{object.finalDftUnit}}
+			{% else %}
+				Not specified
+			{% endif %}</span>
+		</div>
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final viscosity</span>
+			<span class="col-sm-3 col-md-4" id="finalViscosity_{{forloop.counter}}">
+			{% if object.finalViscosity != none %}
+				{{object.finalViscosity}}&nbsp{{object.finalViscosityUnit}}
+			{% else %}
+				Not specified
+			{% endif %}</span>						
+		</div>
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final opacity</span>
+			<span class="col-sm-3 col-md-4" id="finalOpacity_{{forloop.counter}}">
+			{% if object.finalOpacity != none %}
+				{{object.finalOpacity}}
+			{% else %}
+				Not specified
+			{% endif %}</span>					
+		</div>
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final gloss</span>
+			<span class="col-sm-3 col-md-4" id="finalGloss_{{forloop.counter}}">
+			{% if object.finalGloss != none %}
+				{{object.finalGloss}}
+			{% else %}
+				Not specified
+			{% endif %}</span>
+		</div>
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final color DE</span>
+			<span class="col-sm-3 col-md-4" id="finalColorDE_{{forloop.counter}}">
+			{% if object.finalColorDe != none %}
+				{{object.finalColorDe}} on {{object.finalColorDeSpec}}
+			{% else %}
+				Not specified
+			{% endif %}</span>	
+		</div>
+	</div>
+	<br>
+</div>	

@@ -1,0 +1,213 @@
+
+<div class="card border-light" style="width: 100%; min-height: 14em;">
+	{% if paginated_Production.paginator.count == 0 %}
+		<div class="object">
+			<div class="card-body" style="height: 100%; text-align: center;">
+				<span class="my-auto"><span class="col-12">No data here!</span></span>
+			</div>
+		</div>
+
+    {% else %}
+
+		{% for object in paginated_Production %}
+			<div id="productionList">				
+				<div class="card-header" id="productionMeeting_heading" style="border-left: 0.15em solid #D500F9 !important;">
+					<div class="row h-100" >
+						<span class="col-1 col-sm-1 dropToggle my-auto" style="color: #00796B"><i class="fas fa-list fa-sm"></i></span>
+						<p class="col-4 col-sm-8 my-auto dropToggle"><span data-target="#cardProduction{{ object.id }}" data-toggle="collapse" id="productionMeeting_subject">{{object.subject}}<span></p>
+						<div class="col float-right my-auto">
+							<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#cardProductionMeetingEdit{{ object.id }}" data-toggle="collapse" id="editProductionMeeting_Toggle"><a id='edit' data-location="{% url 'production:edit_ProductionMeeting' object.id %}" ajaxStatus="editProductionMeetingForm"><i class="fas fa-edit fa-sm"></i></a></p>
+							<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#deleteProductionMeeting_{{ object.id }}" data-toggle="collapse" id="deleteProductionMeeting_Toggle"><a id='delete' ajaxStatus="deleteProductionMeetingForm"><i class="fas fa-trash-alt fa-sm"></i></a></p>
+						</div>				
+					</div>
+				</div>	
+				<div class="collapse" id="deleteProductionMeeting_{{ object.id }}">
+					<div class="bg-secondary text-white">
+					{% include 'production/includes/deleteProductionMeetingForm.html' %}
+					</div>
+				</div>
+				<div class="collapse" id="cardProductionMeetingEdit{{ object.id }}">
+					<div class="bg-secondary text-white">
+						<div class="form">
+							<form class='editProductionForm' method='POST' action='.' data-url="{% url 'production:edit_ProductionMeeting' object.id %}" ajaxStatus="editProductionMeetingForm">
+								<div class="editProductionMeetingForm">
+									{% include 'production/includes/editProductionMeetingForm.html' %}	
+								</div>
+							</form>
+						</div>									
+					</div>
+				</div>
+				<!-- Production Note -->
+				<div class="h-100 bg-light">
+					<div class="collapse" id="cardProduction{{ object.id }}" style="border-left: 2px solid #26A69A;">
+						<!-- Production Notes -->
+						<div style="border-bottom: 2px solid #B2DFDB !important;">
+							<div class='card-header dropToggle' data-target="#prodNote_{{ object.id }}" data-toggle="collapse" id="productionNoteHeader">
+								<span class="col-4 col-sm-8 my-auto dropToggle" id="productionMeeting_heading1">General production notes</span>
+							</div>
+							<div class='collapse' id='prodNote_{{ object.id }}'>
+								<div class='card-body'>
+									<p class="col-sm-12 dropToggle" id="addProductionNote_Toggle" data-target="#cardBodyAddProductionNote{{ object.id }}" data-toggle="collapse"><i class="fas fa-plus fa-sm dropToggle"></i><span style="padding-left: 1em;">Insert a production note</span></p>
+									<div class="collapse" id="cardBodyAddProductionNote{{ object.id }}">
+										<div class="card-body bg-secondary text-white">
+											<div class="form">
+												<div class="row">
+													<form class='production-form' method='POST' action='.' data-url="{% url 'production:index' %}" ajaxStatus="addProductionNoteForm" prodMeeting="{{ object.id }}" style="width: 100% !important;">
+														{% include 'production/includes/addProductionNote.html' %}
+													</form>
+												</div>								
+											</div>
+										</div>
+									</div>
+									<div>
+										{% if object.getNotes%}
+											{% include 'production/includes/generalNotes.html' %}
+										{% else %}
+											<div class="card-body">
+												<div class="row h-100">
+													<span class="col-sm-12" style="display: inline-block;">Nothing here yet!</span>	
+												</div>
+											</div>
+										{% endif %}										
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Raw material shortages -->
+						<div style="border-bottom: 2px solid #B2DFDB !important;">
+							<div class='card-header dropToggle' data-target="#rmShortage_{{ object.id }}" data-toggle="collapse" id="rmShortageHeader">
+								<span class="col-4 col-sm-8 my-auto dropToggle" id="productionMeeting_heading2">Raw material shortages</span>
+							</div>
+							<div class='collapse' id='rmShortage_{{ object.id }}'>
+								<div class='card-body'>
+									<p class="col-sm-12 dropToggle" id="addRawMaterial_Toggle" data-target="#cardBodyAddRMShortage{{ object.id }}" data-toggle="collapse"><i class="fas fa-plus fa-sm dropToggle"></i><span style="padding-left: 1em;">Insert a raw material shortage</span></p>
+									<div class="collapse" id="cardBodyAddRMShortage{{ object.id }}">
+										<div class="card-body bg-secondary text-white">
+											<div class="form">	
+												<div class="row">	
+													<form class='production-form' method='POST' action='.' data-url="{% url 'production:index' %}" ajaxStatus="addRMSHortageForm" prodMeeting="{{ object.id }}" style="width: 100% !important;">
+														{% include 'production/includes/addRMShortage.html' %}
+													</form>
+												</div>									
+											</div>
+										</div>
+									</div>
+									<div>
+										{% if object.getRMShortages%}
+											{% include 'production/includes/rawMaterialShortages.html' %}
+										{% else %}
+											<div class="card-body">
+												<div class="row h-100">
+													<span class="col-sm-12" style="display: inline-block;">Nothing here yet!</span>	
+												</div>
+											</div>
+										{% endif %}										
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Maintenance Issues -->
+						<div style="border-bottom: 2px solid #B2DFDB !important;">
+							<div class='card-header dropToggle' data-target="#maintenanceIssue_{{ object.id }}" data-toggle="collapse" id="maintenanceIssueHeader">
+								
+								<span class="col-4 col-sm-8 my-auto dropToggle" id="productionMeeting_heading3">Maintenance Issues</span>
+							</div>
+							<div class='collapse' id='maintenanceIssue_{{ object.id }}'>
+								<div class='card-body'>
+									<div class="">
+										<p class="col-sm-12 dropToggle" id="addMaintenanceIssue_Toggle" data-target="#cardBodyAddMaintenanceIssue{{ object.id }}" data-toggle="collapse"><i class="fas fa-plus fa-sm dropToggle"></i><span style="padding-left: 1em;">Insert a maintenance issue</span></p>
+									</div>
+									<div class="collapse" id="cardBodyAddMaintenanceIssue{{ object.id }}">
+										<div class="card-body bg-secondary text-white">
+											<div class="form">	
+												<div class="row">	
+													<form class='production-form' method='POST' action='.' data-url="{% url 'production:index' %}" ajaxStatus="addMaintenanceIssueForm" prodMeeting="{{ object.id }}" style="width: 100% !important;">
+														{% include 'production/includes/addMaintenanceIssue.html' %}
+													</form>
+												</div>									
+											</div>
+										</div>
+									</div>
+									<div>
+										{% if object.getMaintenanceIssues%}
+											{% include 'production/includes/maintenanceIssues.html' %}
+										{% else %}
+											<div class="card-body">
+												<div class="row h-100">
+													<span class="col-sm-12" style="display: inline-block;">Nothing here yet!</span>	
+												</div>
+											</div>
+										{% endif %}										
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Production Plan -->
+						<div style="border-bottom: 2px solid #E0F2F1 !important;">
+							<div class='card-header dropToggle' data-target="#productionPlan_{{ object.id }}" data-toggle="collapse" id="productionPlanHeader">
+								<span class="col-4 col-sm-8 my-auto dropToggle" id="productionMeeting_heading4">Production plan</span>
+							</div>
+							<div class='collapse' id='productionPlan_{{ object.id }}'>
+								<div class='card-body'>
+									<div class="">
+										<p class="col-sm-12 dropToggle" id="addProductionPlan_Toggle" data-target="#cardBodyAddProductionPlan{{ object.id }}" data-toggle="collapse"><i class="fas fa-plus fa-sm dropToggle"></i><span style="padding-left: 1em;">Insert a production plan</span></p>
+									</div>
+									<div class="collapse" id="cardBodyAddProductionPlan{{ object.id }}">
+										<div class="card-body bg-secondary text-white">
+											<div class="form">	
+												<div class="row">	
+													<form class='production-form' method='POST' action='.' data-url="{% url 'production:index' %}" ajaxStatus="addProductionPlanForm" prodMeeting="{{ object.id }}" style="width: 100% !important;">
+														{% include 'production/includes/addProductionPlan.html' %}
+													</form>
+												</div>									
+											</div>
+										</div>
+									</div>
+									<div>
+										{% if object.getProductionPlans%}
+											{% include 'production/includes/productionPlan.html' %}
+										{% else %}
+											<div class="card-body">
+												<div class="row h-100">
+													<span class="col-sm-12" style="display: inline-block;">Nothing here yet!</span>	
+												</div>
+											</div>
+										{% endif %}										
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>	
+
+			</div>
+		{% endfor %}
+
+	{% endif %}
+</div>
+
+<div class="card mb-3" style="width: 100%; border-top: 1px solid #00796B !important;">
+	<div class="paginationBlock">
+		<div class="card-header" data-toggle="collapse">
+			<div class="container pagination">
+			    <span class="step-links">
+			        {% if paginated_Production.has_previous %}
+			            <a class="dropToggle" id="productionPaginationPrevious" data-url="{% url 'production:search_productionPagination' %}" ajaxStatus="refreshProductionList" style="color: #00796B;;">Previous</a>
+			        {% endif %}
+
+			        <span class="current">
+			            Page {{ paginated_Production.number }} of {{ paginated_Production.paginator.num_pages }}
+			        </span>
+
+			        {% if paginated_Production.has_next %}
+			            <a class="dropToggle" id="productionPaginationNext" data-url="{% url 'production:search_productionPagination' %}" ajaxStatus="refreshProductionList" style="color: #00796B;">Next</a>
+			        {% endif %}
+			    </span>
+			</div>
+		</div>
+	</div>
+</div>

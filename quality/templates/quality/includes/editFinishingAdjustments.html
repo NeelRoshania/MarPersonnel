@@ -1,0 +1,29 @@
+{% csrf_token %}
+	<div class="row">
+		<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+		    {{ subForm.adjustmentStage.errors }}
+		    	<label for="{{ subForm.adjustmentStage.id_for_label }}">Adjustment Stage</label>
+		    {{ subForm.adjustmentStage }}
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+		    {{ subForm.rmCode.errors }}
+		    	<label for="{{ subForm.rmCode.id_for_label }}">Raw material</label>
+		    {{ subForm.rmCode }}
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+		    {{ subForm.adjustmentAmount.errors }}
+		    	<label for="{{ subForm.adjustmentAmount.id_for_label }}">Amount to adjust</label>
+		    {{ subForm.adjustmentAmount }}
+		</div>
+		<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+		    {{ subForm.adjustmentUnit.errors }}
+		    	<label for="{{ subForm.adjustmentUnit.id_for_label }}">Unit of adjustment</label>
+		    {{ subForm.adjustmentUnit }}
+		</div>
+	</div>
+	<br>
+	<div class="updatedArea">
+		<button id="addBatchAdjustment_Submit" class="btn btn-dark text-white" type="submit" style="margin-right: 1em;">
+		<i class="fas fa-check"></i><span style="padding-left: 1em;">Update</span>
+		</button>
+	</div>	

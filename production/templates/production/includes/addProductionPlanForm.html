@@ -1,0 +1,73 @@
+<div class='card-header insertHeader'>
+	<div class="row h-100">
+		<span class="col my-auto dropToggle" id="insertProductionMeeting_heading" data-target="#addNewBatch" data-toggle="collapse" style="margin-left: 1em;">Insert a production meeting</span>
+	</div>
+</div>
+<div class='collapse' id='addNewBatch'>
+	<div class='card-body' style="background-color: #E0E0E0;">
+		<div class="text-dark padding-1em-lr">
+			<span id="addObjectHeading" style="padding-bottom: 1em; font-weight: bold;">Complete the information below</span>
+			<hr>
+			<form class='production-form' status='newObject' method='POST' action='.' data-url="{% url 'production:index' %}" ajaxStatus="addProductionMeetingForm">
+			{% csrf_token %}
+			<div class="row my-auto">
+				{% for field in productionMeeting_Form %}
+					<div class="col-12 margin-1em-tb my-auto">
+						<label class='' style="margin: 0 !important;" > {{ field.label_tag }}</label>
+						{{ field }}
+					</div>
+				{% endfor %}
+					<div class="col-12 updatedArea my-auto ">
+						<button id="add_ProductionMeeting_Submit" class="btn btn-primary my-auto " type="submit" style="margin-top: 1em !important;">
+						<i class="fas fa-check"></i><span style="padding-left: 1em;">Update</span>
+						</button>
+					</div>
+			</div>
+		</form>	
+		</div>
+	</div>
+</div>
+
+<div class='card-header insertHeader'>
+	<div class="row h-100">
+		<span class="col my-auto dropToggle" id="insertRawMaterial_heading" data-target="#addQualityProject" data-toggle="collapse" style="margin-left: 1em;">Insert a raw material</span>
+	</div>
+</div>
+<div class='collapse' id='addQualityProject'>
+	<div class='card-body' style="background-color: #E0E0E0;">
+		<div class="text-dark padding-1em-lr">
+			<span id="addObjectHeading" style="padding-bottom: 1em; font-weight: bold;">Complete the information below</span>
+			<hr>
+			<form class='production-form' status='newObject' method='POST' action='.' data-url="{% url 'production:index' %}" ajaxStatus="addRM_Reference">
+				{% include 'production/includes/addRMReference.html' %}
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class='card-header insertHeader'>
+	<div class="row h-100">
+		<span class="col my-auto dropToggle" id="editRawMaterial_heading" data-target="#searchProductType" data-toggle="collapse" style="margin-left: 1em;">View/Edit a raw material</span>
+	</div>
+</div>
+<div class='collapse' id='searchProductType'>
+	<div class='card-body' style="background-color: #E0E0E0;">
+		<div class="text-dark padding-1em-lr">
+			<span id="addObjectHeading" style="padding-bottom: 1em; font-weight: bold;">First search for a raw material, then view details.</span>
+			<hr>
+			<form class='searchProductionForm' method='GET' action='.' data-url="{% url 'production:search_productionPagination' %}" ajaxStatus="search_EDIT_RawMaterialPaginate">
+				<!-- Input box here -->
+				<div class="input-group mb-3">
+				  <input id="searchRawMaterialInput" type="text" name="searchObjectFieldText" class="searchField col-8 col-sm-8 form-control" placeholder="Search for a raw material">
+				  <div class="input-group-prepend col-4 col-sm-4" >
+				    <button class="btn btn-dark text-white" type="submit" id="searchRawMaterial_Submit">Go!</button>
+				  </div>
+				</div>
+			</form>
+			<!-- Search results here -->
+			<div id="rawMaterialResults">
+				{% include 'production/includes/searchRawMaterials.html' %}
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,46 @@
+<div id="subObject">
+	<p class="my-auto dropToggle" id="editQuality_header" style="font-weight: bold; padding: 1em 1em !important;" data-target="#addFinshingAdjustment_{{ object.id }}" data-toggle="collapse"><i class="fas fa-plus fa-sm dropToggle"></i><span id="addBatchAdjustment_Toggle" style="margin-left: 1em;">Insert a batch adjustment</span></p>
+	
+	<div class="collapse" id="addFinshingAdjustment_{{ object.id }}" style="margin-bottom: 1em;">
+		<div class="bg-secondary text-white">
+			<div class="form">	
+				<form class='quality-form' method='POST' action='.' data-url="{% url 'quality:index' %}" ajaxStatus="addBatchAdjustment" paintInfo="{{object.id}}">
+					{% include 'quality/includes/addBatchAdjustment.html' %}
+				</form>
+			</div>									
+		</div>
+	</div>
+
+	<!-- table headings -->
+	<div class="container" id="adjustment">
+		<div class="row">
+			{% if object.getFinishingAdjustments.count == 0 %}
+						<span class="my-auto"><p class="col-12" style="text-align: center;">No data here!</p></span>
+		    {% else %}
+					{% for adjustment in object.getFinishingAdjustments %}
+					<div class="col-12" style="background-color: #FFE082; border-bottom: 1px solid white; padding: 1em 0em;">
+						<div class="row" style="margin-left: 1em;">
+							<div class="col-11 col-sm-9 my-auto">
+								<div class="row">
+									 <span class="my-auto" id="adjustmentRMCode_{{forloop.counter}}" style="font-weight: bold;">{{adjustment.adjustmentStage}}:  &nbsp</span>{{adjustment.rmCode}}&nbsp of &nbsp<span id="adjustmentAmount_{{forloop.counter}}">{{adjustment.adjustmentAmount}} {{adjustment.adjustmentUnit}}</span>
+								</div>
+							</div>
+							<div class="col-12 col-sm-3 my-auto" style="padding: 0 !important;">
+								<span class="my-auto dropToggle" style="font-weight: bold;" id="editProductionPlan_Toggle"><a id='edit' data-location="{% url 'quality:edit_QualityPlan' adjustment.id %}" data-toggle="collapse" data-target="#editFinishingAdjustments_{{ object.id }}" ajaxStatus="editFinishingAdjustments"><i class="fas fa-edit fa-sm dropToggle"></i><span id="editBatchAdjustment">&nbsp Change</span></a></span>
+							</div>
+						</div>
+					</div>
+					<div class="collapse bg-secondary text-white col-12" id="editFinishingAdjustments_{{ object.id }}">
+						<div class="form">
+							<form class='editQualityForm' method='POST' action='.' data-url="{% url 'quality:edit_QualityPlan' adjustment.id %}" ajaxStatus="editFinishingAdjustments" paintInfo="{{object.id}}">
+							<div class="editFinishingAdjustments">
+							{% include 'quality/includes/editFinishingAdjustments.html' %}
+							</div>
+							</form>								
+						</div>
+					</div>
+					{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+</div>	

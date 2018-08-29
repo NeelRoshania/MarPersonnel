@@ -1,0 +1,22 @@
+
+{% csrf_token %}
+<h5 id="editUserNote_heading">Edit this secondary objective</h5>
+<hr style="border-color: white !important;">
+<br>
+
+<div style="width: 100% !important;">
+    {{ subForm.taskNote.errors }}
+    	<label for="{{ subForm.taskNote.id_for_label }}_label">Task</label>
+    {{ subForm.taskNote }}
+</div>
+<div style="margin-top: 1em !important;">
+    {{ subForm.noteProgress.errors }}
+    	<label for="{{ subForm.noteProgress.id_for_label }}_label">Progress</label>
+    {{ subForm.noteProgress }}
+</div>
+<br>
+<div class="updatedArea">
+	<button id="edit_UserNote_Submit" class="btn btn-primary" type="submit" style="margin-right: 1em;">
+	<i class="fas fa-check"></i><span></span>
+	</button>
+</div>

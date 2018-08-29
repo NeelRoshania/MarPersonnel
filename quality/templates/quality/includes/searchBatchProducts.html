@@ -1,0 +1,64 @@
+{% if searchBatchProduct_results.count == 0 %}
+	<div class="object">
+		<div class="card-body">
+			<span class="my-auto"><p class="col-12" style="text-align: center;">No data here!</p></span>
+		</div>
+	</div>
+{% else %}
+
+	{% for batchProduct in searchBatchProduct_results %}
+	<div id="batchProductResult">
+		<div class="card-header bg-light text-dark">
+			<div class="row h-100">
+				<span class="col-12 col-sm-2 my-auto" id="productTypeSearchResult_code" data-target="#rdProjectDescription_{{ batchProduct.id }}" data-toggle="collapse">{{ batchProduct.productCode }}</span>
+				<span class="col-8 col-sm-6 my-auto text-secondary" id="productTypeSearchResult_description" data-target="#rdProjectDescription_{{ batchProduct.id }}" data-toggle="collapse">{{ batchProduct.productDescription }}</span>
+				<div class="col-3 float-right my-auto" style="padding: 0 !important;">
+					<p class="my-auto dropTogGle float-right" data-target="#editRDProject_{{ batchProduct.id }}" data-toggle="collapse" id="editRDProject_Toggle"><a id='edit' data-location="{% url 'quality:editBatchProduct' batchProduct.id %}" ajaxStatus="editBatchProduct"><i class="fas fa-edit fa-sm"></i></a></p>
+					<p class="my-auto dropToggle float-right" data-target="#deleteBatchProduct_{{ batchProduct.id }}" data-toggle="collapse" id="deleteBatchProduct_Toggle"><a id='delete' ajaxStatus="deleteBatchProject" style="padding-right: 1em;"><i class="fas fa-trash-alt fa-sm"></i></a></p>
+				</div>
+			</div>
+		</div>
+		<div class="collapse" id="deleteBatchProduct_{{ batchProduct.id }}">
+			<div class="bg-secondary text-white">
+				{% include 'quality/includes/deleteBatchProduct.html' %}
+			</div>
+		</div>	
+		<div class="collapse" id="editRDProject_{{ batchProduct.id }}">
+			<div class="bg-secondary text-white">
+				<div class="form">	
+						<form class='editQualityForm' method='POST' action='.' data-url="{% url 'quality:editBatchProduct' batchProduct.id %}" ajaxStatus="editBatchProduct">
+							<div class="editBatchProduct">
+								{% include 'quality/includes/editBatchProduct.html' %}	
+							</div>
+						</form>		
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+	
+	{% if searchBatchProduct_results %}
+	<div class="card mb-3" style="width: 100%; border-top: 1px solid #1976D2 !important;">
+		<div class="RDProject_Pagination">
+			<div class="card-header" data-toggle="collapse">
+				<div class="container pagination">
+				    <span class="step-links">
+				        {% if searchBatchProduct_results.has_previous %}
+				            <a class="dropToggle text-dark" id="batchProjectsPaginationPrevious" ajaxStatus="batchProjectsPaginationPrevious", data-url= "{% url 'quality:quality_handlePagination' %}" style="color: #673AB7 !important; font-weight: bold; color:white;">Previous</a>
+				        {% endif %}
+
+				        <span class="current">
+				            Page {{ searchBatchProduct_results.number }} of {{ searchBatchProduct_results.paginator.num_pages }}
+				        </span>
+
+				        {% if searchBatchProduct_results.has_next %}
+				            <a class="dropToggle text-dark" id="batchProjectsPaginationNext" ajaxStatus="batchProjectsPaginationNext" data-url= "{% url 'quality:quality_handlePagination' %}" style="color: #673AB7 !important; font-weight: bold; color:white;">Next</a>
+				        {% endif %}
+				    </span>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+
+{% endif %}

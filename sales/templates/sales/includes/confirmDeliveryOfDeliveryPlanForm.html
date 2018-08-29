@@ -1,0 +1,8 @@
+<div style="padding: 1em 0em;">
+	<div class="row my-auto">
+		<span class="col my-auto" style="display: inline-block; margin-left: 1em !important;" >Are you sure we delivered to <span style="font-style: italic;">"{{ object.customerID }}"</span> ?</span>
+		<span class="my-auto dropToggle" id="deleteYes" href="{% url 'sales:delivered_deliveryPlan' object.id %}" style="display: inline-block;" ajaxStatus="deliveredDeliveryPlanForm">
+			<i class="fas fa-check fa-sm dropToggle" style="color: red;"></i>
+		</span>
+	</div>
+</div>

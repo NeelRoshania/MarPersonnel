@@ -1,0 +1,52 @@
+{% csrf_token %}
+
+<div class="row">
+	<div class="col-12 col-sm-12 col-md-4">
+	    {{ paintInfo_Form.paintInfoType.errors }}
+	    	<label for="{{ paintInfo_Form.paintInfoType.id_for_label }}">Type</label>
+	    {{ paintInfo_Form.paintInfoType }}
+	</div>
+	<div class="col-12 col-sm-12 col-md-4">
+	    {{ paintInfo_Form.rdProject.errors }}
+	    	<label for="{{ paintInfo_Form.rdProject.id_for_label }}">Lab Batch (If required)</label>
+	    {{ paintInfo_Form.rdProject }}
+	</div>
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-12 col-sm-12 col-md-4">
+	    {{ paintInfo_Form.productType.errors }}
+	    	<label for="{{ paintInfo_Form.productType.id_for_label }}">Product</label>
+	    {{ paintInfo_Form.productType }}
+	</div>
+	
+	<div class="col-12 col-sm-12 col-md-4">
+	    {{ paintInfo_Form.batchPeriod.errors }}
+	    	<label for="{{ paintInfo_Form.batchPeriod.id_for_label }}">Batch period</label>
+	    {{ paintInfo_Form.batchPeriod }}
+	</div>
+
+	<div class="col-12 col-sm-12 col-md-4">
+	    {{ paintInfo_Form.batchNumber.errors }}
+	    	<label for="{{ paintInfo_Form.batchNumber.id_for_label }}">Batch number</label>
+	    {{ paintInfo_Form.batchNumber }}
+	</div>
+</div>
+
+<br>
+<br>
+
+<div class="updatedArea">
+	<button id="addBatch_Submit" class="btn btn-primary" type="submit" style="margin-right: 1em;">
+	<i class="fas fa-check"></i><span style="padding-left: 1em;">Update</span>
+	</button>
+</div>
+<br>
+
+
+	
+
+
+

@@ -1,0 +1,70 @@
+{% if searchRDProjects_results.count == 0 %}
+	<div class="object">
+		<div class="card-body">
+			<span class="my-auto"><p class="col-12" style="text-align: center;">No data here!</p></span>
+		</div>
+	</div>
+{% else %}
+
+	{% for rdProject in searchRDProjects_results %}
+	<div id="rdProjectResult">
+		<div class="card-header bg-light">
+			<div class="row h-100">
+				<span class="col-12 col-sm-4 my-auto dropToggle" id="rdProjectSearchResult_customer" data-target="#rdProjectDescription_{{ rdProject.id }}" data-toggle="collapse">{{ rdProject.customer }}</span>
+				<span class="col-8 col-sm-4 my-auto dropToggle text-secondary" id="rdProjectSearchResult_subject" data-target="#rdProjectDescription_{{ rdProject.id }}" data-toggle="collapse">{{ rdProject.subject }}</span>
+				<div class="col-3 float-right my-auto" style="padding: 0 !important;">
+					<p class="my-auto dropToggle float-right" data-target="#editRDProject_{{ rdProject.id }}" data-toggle="collapse" id="editRDProject_Toggle"><a id='edit' data-location="{% url 'quality:editRDProject' rdProject.id %}" ajaxStatus="editRDProject"><i class="fas fa-edit fa-sm"></i></a></p>
+					<p class="my-auto dropToggle float-right" data-target="#deleteRDProject_{{ rdProject.id }}" data-toggle="collapse" id="deleteRDProject_Toggle"><a id='delete' ajaxStatus="deleteRDProject" style="padding-right: 1em;"><i class="fas fa-trash-alt fa-sm"></i></a></p>
+				</div>
+			</div>
+		</div>
+		<div class="collapse" id="deleteRDProject_{{ rdProject.id }}">
+			<div class="bg-secondary text-white">
+				{% include 'quality/includes/deleteRDProject.html' %}
+			</div>
+		</div>	
+		<div class="collapse" id="editRDProject_{{ rdProject.id }}">
+			<div class="bg-secondary text-white">
+				<div class="form">	
+					<form class='editQualityForm' method='POST' action='.' data-url="{% url 'quality:editRDProject' rdProject.id %}" ajaxStatus="editRDProject">
+						<div class="editRDProject">
+							{% include 'quality/includes/editRDProject.html' %}	
+						</div>
+					</form>			
+				</div>
+			</div>
+		</div>
+		<div class="collapse" id="rdProjectDescription_{{ rdProject.id }}">
+			<div style="padding: 1em 0em;">
+				<div class="row h-100 padding-1em-lr"> 
+					<span class="col-12 my-auto dropToggle" id="rdProjectSearchResult_subject" data-target="#rdProjectDescription_{{ rdProject.id }}" data-toggle="collapse">{{ rdProject.instructions }}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+
+	{% if searchRDProjects_results %}
+	<div class="card mb-3" style="width: 100%; border-top: 1px solid #1976D2 !important;">
+		<div class="RDProject_Pagination">
+			<div class="card-header" data-toggle="collapse">
+				<div class="container pagination">
+				    <span class="step-links">
+				        {% if searchRDProjects_results.has_previous %}
+				            <a class="dropToggle text-dark" id="RDProjectsPaginationPrevious" ajaxStatus="RDProjectsPaginationPrevious", data-url= "{% url 'quality:quality_handlePagination' %}" style="color: #673AB7 !important; font-weight: bold; color:white;">Previous</a>
+				        {% endif %}
+
+				        <span class="current">
+				            Page {{ searchRDProjects_results.number }} of {{ searchRDProjects_results.paginator.num_pages }}
+				        </span>
+
+				        {% if searchRDProjects_results.has_next %}
+				            <a class="dropToggle text-dark" id="RDProjectsPaginationNext" ajaxStatus="RDProjectsPaginationNext" data-url= "{% url 'quality:quality_handlePagination' %}" style="color: #673AB7 !important; font-weight: bold; color:white;">Next</a>
+				        {% endif %}
+				    </span>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+{% endif %}

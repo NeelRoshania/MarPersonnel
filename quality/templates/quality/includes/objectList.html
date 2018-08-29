@@ -1,0 +1,145 @@
+
+<div class="card" style="width: 100%; min-height: 14em;">
+	{% if paginated_Quality.paginator.count == 0 %}
+		<div class="object">
+			<div class="card-body">
+				<span class="my-auto"><p class="col-12" id="noDataQualityObject" style="text-align: center;">No data here!</p></span>
+			</div>
+		</div>
+
+    {% else %}
+
+	{% for object in paginated_Quality %}
+		<div id="QualityPlanList">			
+			<div class="card-header text-dark" id="qualityPlan" style="border-left: 0.15em solid #546E7A !important;">
+				<div class="row h-100">
+					{% if object.active == "Completed" %}
+					<div class="col-1 col-sm-1 my-auto">
+						<span style="color: #00C853;"><i class="fas fa-check fa-sm"></i></span>
+						{% if object.rdProject %}
+						<span style="color: #0091EA; text-align: center"><i class="fas fa-flask fa-sm"></i></span>
+						{% endif %}
+					</div>
+					{% else %}
+					<div class="col-1 col-sm-1 my-auto">
+						<span style="color: red; text-align: center;"><i class="fas fa-times fa-sm"></i></span>
+						{% if object.rdProject %}
+						<span style="color: #0091EA; text-align: center;"><i class="fas fa-flask fa-sm"></i></span>
+						{% endif %}
+					</div>
+					{% endif %}
+					<span class="col-10 col-sm-2 my-auto"><span class="dropToggle" id="QualityObject_subject" data-target="#QualityObject_{{ object.id }}" data-toggle="collapse">{{object.batchPeriod}} - {{object.batchNumber}}</span></span>
+					<span class="col-7 col-sm-6 my-auto text-secondary" id="QualityObject_product">{{object.productType}}</span>
+					<div class="col float-right my-auto">
+						<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#updateQualityPlan{{ object.id }}" data-toggle="collapse" id="confirmUpdateQualityObject_Toggle"><a id='delete' ajaxStatus="updateQualityPlan"><i class="fas fa-thumbs-up fa-sm"></i></a></p>
+						<p class="my-auto dropToggle float-right" style="padding: 0em 1em;" data-target="#deleteQualityPlan{{ object.id }}" data-toggle="collapse" id="deleteBatchProduct_Toggle"><a id='delete' ajaxStatus="deleteQualityPlan"><i class="fas fa-trash-alt fa-sm"></i></a></p>
+					</div>
+				</div>
+			</div>
+			<div class="collapse bg-secondary text-white" id="deleteQualityPlan{{ object.id }}">
+					{% include 'quality/includes/deleteQualityPlan.html' %}
+			</div>	
+			<div class="collapse bg-secondary text-white" id="updateQualityPlan{{ object.id }}">
+				{% include 'quality/includes/updateQualityPlan.html' %}
+			</div>
+
+			<!-- Premix parameters -->
+			<div class="collapse" id="QualityObject_{{ object.id }}">
+				<div class="h-100" style="border-left: 2px solid #FFCA28;">
+					
+					{% if object.rdProject %}
+					<div class="bg-light" style="border-bottom: 2px solid #FFECB3 !important;" >
+						<div class='card-header dropToggle' id="premixParameters" >
+							<span class="col-1 col-sm-1 dropToggle my-auto"><i class="fas fa-angle-double-down fa-sm"></i></span>
+							<span class="col-4 col-sm-8 my-auto dropToggle" id="qualityPlan_labParams" data-target="#labBatchInformation_{{ object.id }}" data-toggle="collapse">Lab batch information</span>
+						</div>
+
+						<div class='collapse' id='labBatchInformation_{{ object.id }}'>
+							<div class='card-body'>
+								{% include 'quality/includes/labBatchInformation.html' %}									
+							</div>
+						</div>
+					</div>
+					{% endif %}
+					<!-- Premix adjustments -->
+					<div class="bg-light" style="border-bottom: 2px solid #FFECB3 !important;" >
+						<div class='card-header dropToggle' id="premixParameters" >
+							{% if object.premixInfoModifiedBy == None %}
+								<span class="col-1 col-sm-1 dropToggle my-auto"><i class="fas fa-times fa-sm"></i></span>
+							{% else %}
+								<span class="col-1 col-sm-1 dropToggle my-auto"><i class="fas fa-check fa-sm"></i></span>
+							{% endif %}
+							<span class="col-4 col-sm-8 my-auto dropToggle" id="qualityPlan_heading1" data-target="#premixParameters_{{ object.id }}" data-toggle="collapse">Premix parameters</span>
+						</div>
+
+						<div class='collapse' id='premixParameters_{{ object.id }}'>
+							<div class='card-body'>
+								{% include 'quality/includes/premixInformation.html' %}									
+							</div>
+						</div>
+					</div>
+
+					<!-- Batch parameters -->
+					<div class="bg-light" style="border-bottom: 2px solid #FFECB3 !important;">
+						<div class='card-header dropToggle' id="batchParameters" >
+							{% if object.batchInfoModifiedBy == None %}
+								<span class="col-1 col-sm-1 dropToggle my-auto"><i class="fas fa-times fa-sm"></i></span>
+							{% else %}
+								<span class="col-1 col-sm-1 dropToggle my-auto"><i class="fas fa-check fa-sm"></i></span>
+							{% endif %}
+							<span class="col-4 col-sm-8 my-auto dropToggle" id="qualityPlan_heading2" data-target="#batchParameters_{{ object.id }}" data-toggle="collapse">Batch parameters</span>
+						</div>
+						<div class='collapse' id='batchParameters_{{ object.id }}'>
+							<div class='card-body'>
+								{% include 'quality/includes/batchInformation.html' %}			
+							</div>
+						</div>
+					</div>
+
+					<!-- Finishing adjustments -->
+					<div class="bg-light" style="border-bottom: 2px solid #FFECB3 !important;">
+						<div class='card-header dropToggle' id="finishingAdjustments" >
+							{% if object.getFinishingAdjustments.count == 0 %}
+								<span class="col-1 col-sm-1 dropToggle my-auto"><i class="fas fa-times fa-sm"></i></span>
+							{% else %}
+								<span class="col-1 col-sm-1 dropToggle my-auto"><i class="fas fa-check fa-sm"></i></span>
+							{% endif %}
+							<span class="col-4 col-sm-8 my-auto dropToggle" id="qualityPlan_heading3" data-target="#finishingAdjustments_{{ object.id }}" data-toggle="collapse">Finishing adjustments</span>
+						</div>
+
+						<div class='collapse' id='finishingAdjustments_{{ object.id }}'>
+							<div class='card-body'>
+								{% include 'quality/includes/finishingAdjustments.html' %}			
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	{% endfor %}
+
+	{% endif %}
+</div>
+
+<div class="card mb-3" style="width: 100%; border-top: 1px solid #FFA000 !important;">
+	<div class="paginationBlock">
+		<div class="card-header text-dark" data-toggle="collapse">
+			<div class="container pagination">
+			    <span class="step-links">
+			        {% if paginated_Quality.has_previous %}
+			            <a class="dropToggle" id="qualityPaginationPrevious" data-url="{% url 'quality:quality_handlePagination' %}" ajaxStatus="refreshQualityPlanList" style="color: #FFA000;">Previous</a>
+			        {% endif %}
+
+			        <span class="current">
+			            Page {{ paginated_Quality.number }} of {{ paginated_Quality.paginator.num_pages }}
+			        </span>
+
+			        {% if paginated_Quality.has_next %}
+			            <a class="dropToggle" id="qualityPaginationNext" data-url="{% url 'quality:quality_handlePagination' %}" ajaxStatus="refreshQualityPlanList" style="color: #FFA000;">Next</a>
+			        {% endif %}
+			    </span>
+			</div>
+		</div>
+	</div>
+</div>
