@@ -96,6 +96,7 @@ class AjaxFormMixin_Quality(object):
                             print("AjaxFormMixin_Quality:handleAjax called -> request to add new Batch")
                             obj = PaintInfo( 
                                 paintInfoType=form.cleaned_data['paintInfoType'],
+                                dateIssued=form.cleaned_data['dateIssued'],
                                 productType=form.cleaned_data['productType'],
                                 rdProject=form.cleaned_data['rdProject'],
                                 batchPeriod=form.cleaned_data['batchPeriod'],
@@ -172,7 +173,6 @@ class AjaxFormMixin_Quality(object):
                             # Get object and modify
                             obj = self.getQuerySet_Quality(PaintInfo, pk=self.kwargs['pk'])
                             obj.premixMachine=form.cleaned_data['premixMachine']
-                            obj.dateIssued=form.cleaned_data['dateIssued']
                             obj.dateLoaded=form.cleaned_data['dateLoaded']
                             obj.datePremixPassed=form.cleaned_data['datePremixPassed']
                             obj.initialFog=form.cleaned_data['initialFog']

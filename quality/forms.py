@@ -94,7 +94,7 @@ class PaintInfoForm(forms.ModelForm): # or forms.ModelForm
             'finalGloss': forms.NumberInput(attrs={'class':'form-control'}),
             'finalColorDe': forms.NumberInput(attrs={'class':'form-control'}),
             'finalColorDeSpec': forms.Select(attrs={'class':'form-control'}),
-            'dateIssued': forms.TextInput(attrs={'class':'datepicker date form-control'}),
+            'dateIssued': forms.TextInput(attrs={'class':'datepicker date form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'dateLoaded': forms.TextInput(attrs={'class':'datepicker date form-control'}),
             'datePremixPassed': forms.TextInput(attrs={'class':'datepicker date form-control'}),
             'active': forms.Select(attrs={'class':'form-control'}),
@@ -113,6 +113,10 @@ class PaintInfoForm(forms.ModelForm): # or forms.ModelForm
             'batchNumber': {
                 'required': ("Batch number required!"),
             },
+            'dateIssued': {
+                'required': ("Date of batch issue required!"),
+            },
+
         }
 
 class PremixInfoForm(forms.ModelForm): # or forms.ModelForm
@@ -126,7 +130,6 @@ class PremixInfoForm(forms.ModelForm): # or forms.ModelForm
             'finalPremixViscosity',
             'initialViscosityUnit',
             'finalFog',
-            'dateIssued',
             'dateLoaded',
             'datePremixPassed',
             'premixMachine',
@@ -139,7 +142,6 @@ class PremixInfoForm(forms.ModelForm): # or forms.ModelForm
             'finalPremixViscosity': "Final premix viscosity",
             'initialViscosityUnit': "Premix viscosity unit",
             'finalFog': "Final FOG at pass",
-            'dateIssued': "Date of batch card issue",
             'dateLoaded': "Date of premix load",
             'datePremixPassed': "Date of premix pass",
             'premixMachine': "Premix Machine",
@@ -152,7 +154,6 @@ class PremixInfoForm(forms.ModelForm): # or forms.ModelForm
             'finalPremixViscosity': forms.NumberInput(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em", 'step': '0.01'}),
             'initialViscosityUnit': forms.Select(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'finalFog': forms.NumberInput(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em", 'step': '1'}),
-            'dateIssued': forms.TextInput(attrs={'class':'datepicker date form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'dateLoaded': forms.TextInput(attrs={'class':'datepicker date form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'datePremixPassed': forms.TextInput(attrs={'class':'datepicker date form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'premixMachine': forms.Select(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
