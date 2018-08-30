@@ -25,43 +25,43 @@
 			<span class="col-sm-3 col-md-4" id="dateLoaded_{{forloop.counter}}">{{object.dateLoaded}}</span>
 		</div>	
 		<div class="row" style="padding: 0.5em 0em">
-			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Date premix passed</span>
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Date FOG passed</span>
 			<span class="col-sm-3 col-md-4" id="datePremixPass_{{forloop.counter}}">{{object.datePremixPassed}}</span>
 		</div>	
 		<div class="row" style="padding: 0.5em 0em">
 			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Initial Premix FOG</span>
 			<span class="col-sm-3 col-md-4" id="initialPremixFOG_{{forloop.counter}}">
-			{% if object.initialFog != none %}
-				{{object.initialFog}} um
+			{% if object.initialFogUnit == "UM" %}
+				{{object.initialFog}} {{object.initialFogUnit}}
 			{% else %}
-				Not specified
+				{{object.initialFogUnit}}
 			{% endif %}</span>
+		</div>
+		<div class="row" style="padding: 0.5em 0em">
+			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final Premix FOG</span>
+			<span class="col-sm-3 col-md-4" id="finaPremixFOG_{{forloop.counter}}">
+			{% if object.finalFogUnit == "UM" %}
+				{{object.finalFog}} {{object.finalFogUnit}}
+			{% else %}
+				{{object.finalFOGUnit}}
+			{% endif %}</span>					
 		</div>
 		<div class="row" style="padding: 0.5em 0em">
 			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Initial premix viscosity</span>
 			<span class="col-sm-3 col-md-4" id="initialVisc_{{forloop.counter}}">
-			{% if object.initialPremixViscosity != none %}
+			{% if object.initialPremixViscosityUnit == "UM" %}
 				{{object.initialPremixViscosity}}&nbsp{{object.initialViscosityUnit}}
 			{% else %}
-				Not specified
+				{{object.initialViscosityUnit}}
 			{% endif %}</span>					
 		</div>
 		<div class="row" style="padding: 0.5em 0em">
 			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final premix viscosity</span>
 			<span class="col-sm-3 col-md-4" id="initialVisc_{{forloop.counter}}">
-			{% if object.finalPremixViscosity != none %}
+			{% if object.finalPremixViscosityUnit == "UM" %}
 				{{object.finalPremixViscosity}}&nbsp{{object.initialViscosityUnit}}
-			{% else %}
-				Not specified
-			{% endif %}</span>					
-		</div>
-		<div class="row" style="padding: 0.5em 0em">
-			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final Premix FOG</span>
-			<span class="col-sm-3 col-md-4" id="finaPremixFOG_{{forloop.counter}}">
-			{% if object.finalFog != none %}
-				{{object.finalFog}} um
-			{% else %}
-				Not specified
+			{% else  %}
+				{{object.initialViscosityUnit}}
 			{% endif %}</span>					
 		</div>
 	</div>

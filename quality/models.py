@@ -53,11 +53,13 @@ class PaintInfo(models.Model):
 	VISC_UNIT = (
     ('KU', 'KU'),
     ('Seconds', 'Seconds'),
+    ('Not Required/Measured', 'Not Required/Measured'),
 	)
 
 	DRY_UNIT = (
     ('Hour', 'Hour'),
     ('Min', 'Min'),
+    ('Not Required/Measured', 'Not Required/Measured'),
 	)
 
 	DFT_UNIT = (
@@ -65,13 +67,19 @@ class PaintInfo(models.Model):
     ('150um', '150um'),
     ('100um', '100um'),
     ('76um', '76um'),
+    ('Not Required/Measured', 'Not Required/Measured'),
+	)
+
+	FOG_UNIT = (
+    ('UM', 'UM'),
     ('Bit-free', 'Bit-free'),
+    ('Not Required/Measured', 'Not Required/Measured'),
 	)
 
 	COLOR_SPEC = (
     ('Spectrophotometer', 'Spectrophotometer'),
     ('Visual Match', 'Visual Match'),
-    ('Not Required', 'Not Required'),
+    ('Not Required/Measured', 'Not Required/Measured'),
 	)
 
 	ACTIVE_STATUS = (
@@ -116,26 +124,28 @@ class PaintInfo(models.Model):
 	finishingMachine = models.CharField(max_length=15, choices=MACHINE_TYPE, blank=True, null=True)
 	productType = models.ForeignKey(ProductType, on_delete=models.CASCADE, blank=False)
 	rdProject = models.ForeignKey(RDProject, on_delete=models.CASCADE, blank=True, null=True)
-	batchPeriod = models.IntegerField(blank=False)
-	batchNumber = models.IntegerField(blank=False)
+	batchPeriod = models.IntegerField(max_length=3, blank=False)
+	batchNumber = models.IntegerField(max_length=5, blank=False)
 	initialFog = models.FloatField(blank=True, null=True)
+	initialFogUnit = models.CharField(max_length=21, choices=FOG_UNIT, blank=True, null=True)
 	initialPremixViscosity = models.FloatField(max_length=5, blank=True, null=True)
 	finalPremixViscosity = models.FloatField(max_length=5, blank=True, null=True)
-	initialViscosityUnit = models.CharField(max_length=7, choices=VISC_UNIT, blank=True, null=True)
+	initialViscosityUnit = models.CharField(max_length=21, choices=VISC_UNIT, blank=True, null=True)
 	finalSg = models.FloatField(max_length=5, blank=True, null=True)
 	finalHardDry = models.FloatField(max_length=5, blank=True, null=True)
-	finalHardDryUnit = models.CharField(max_length=4, choices=DRY_UNIT, blank=True, null=True)
+	finalHardDryUnit = models.CharField(max_length=21, choices=DRY_UNIT, blank=True, null=True)
 	finalTouchDry = models.FloatField(max_length=5, blank=True, null=True)
-	finalTouchDryUnit = models.CharField(max_length=4, choices=DRY_UNIT, blank=True, null=True)
+	finalTouchDryUnit = models.CharField(max_length=21, choices=DRY_UNIT, blank=True, null=True)
 	finalDft = models.FloatField(max_length=5, blank=True, null=True)
-	finalDftUnit = models.CharField(max_length=5, choices=DFT_UNIT, blank=True, null=True)
+	finalDftUnit = models.CharField(max_length=21, choices=DFT_UNIT, blank=True, null=True)
 	finalOpacity = models.FloatField(max_length=5, blank=True, null=True)
 	finalFog = models.FloatField(blank=True, null=True)
+	finalFOGUnit = models.CharField(max_length=21, choices=FOG_UNIT, blank=True, null=True)
 	finalViscosity = models.FloatField(max_length=5, blank=True, null=True)
-	finalViscosityUnit = models.CharField(max_length=7, choices=VISC_UNIT, blank=True, null=True)
+	finalViscosityUnit = models.CharField(max_length=21, choices=VISC_UNIT, blank=True, null=True)
 	finalGloss = models.FloatField(max_length=5, blank=True, null=True)
 	finalColorDe = models.FloatField(max_length=5, blank=True, null=True)
-	finalColorDeSpec = models.CharField(max_length=17, choices=COLOR_SPEC, blank=True, null=True)
+	finalColorDeSpec = models.CharField(max_length=21, choices=COLOR_SPEC, blank=True, null=True)
 	dateIssued = models.DateField(blank=True, null=True)
 	dateLoaded = models.DateField(blank=True, null=True)
 	datePremixPassed = models.DateField(blank=True, null=True)

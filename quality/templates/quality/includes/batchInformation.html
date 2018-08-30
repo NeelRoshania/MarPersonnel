@@ -13,75 +13,82 @@
 	<!-- Display headings -->
 	<div class="container">
 		<div class="row" style="padding: 0.5em 0em">
-			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final specific gravity</span>
-			<span class="col-sm-3 col-md-4" id="finalSg_{{forloop.counter}}">
+			<span class="col-12 col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final specific gravity</span>
+			<span class="col-12 col-sm-3 col-md-4" id="finalSg_{{forloop.counter}}">
 			{% if object.finalSg != none %}
 				{{object.finalSg}} ml/g (L/Kg)
 			{% else %}
-				Not specified
+				Not yet measured/required
 			{% endif %}</span>
 		</div>	
 		<div class="row" style="padding: 0.5em 0em">
-			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final touch dry</span>
-			<span class="col-sm-3 col-md-4" id="finalTouchDry_{{forloop.counter}}">
-			{% if object.finalTouchDryUnit != none %}
+			<span class="col-12 col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final touch dry</span>
+			<span class="col-12 col-sm-3 col-md-4" id="finalTouchDry_{{forloop.counter}}">
+			{% if object.finalTouchDryUnit == "Min" or object.finalTouchDryUnit == "Hour" %}
 				{{object.finalTouchDry}}&nbsp{{object.finalTouchDryUnit}}
 			{% else %}
-				Not specified
+				{{object.finalTouchDryUnit}}
 			{% endif %}</span>
 		</div>	
+
 		<div class="row" style="padding: 0.5em 0em">
-			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final hard dry</span>
-			<span class="col-sm-3 col-md-4" id="finalHardDry_{{forloop.counter}}">
-			{% if object.finalHardDry != none %}
+			<span class="col-12 col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final hard dry</span>
+			<span class="col-12 col-sm-3 col-md-4" id="finalHardDry_{{forloop.counter}}">
+			{% if object.finalHardDryUnit == "Min" or object.finalHardDryUnit == "Hour" %}
 				{{object.finalHardDry}}&nbsp{{object.finalHardDryUnit}}
 			{% else %}
-				Not specified
+				{{object.finalHardDryUnit}}
 			{% endif %}</span>
 		</div>	
 		<div class="row" style="padding: 0.5em 0em">
-			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final DFT</span>
-			<span class="col-sm-3 col-md-4" id="finalDFT_{{forloop.counter}}">
-			{% if object.finalDft != none %}
-				{{object.finalDft}}um on WFT of&nbsp{{object.finalDftUnit}}
+			<span class="col-12 col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final DFT</span>
+			<span class="col-12 col-sm-3 col-md-4" id="finalDFT_{{forloop.counter}}">
+			{% if object.finalDftUnit == "Not Required/Measured" or object.finalDftUnit == none %}
+				{{object.finalDftUnit}}
 			{% else %}
-				Not specified
+				{{object.finalDft}} for WFT specification of {{object.finalDftUnit}}
 			{% endif %}</span>
 		</div>
 		<div class="row" style="padding: 0.5em 0em">
-			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final viscosity</span>
-			<span class="col-sm-3 col-md-4" id="finalViscosity_{{forloop.counter}}">
-			{% if object.finalViscosity != none %}
-				{{object.finalViscosity}}&nbsp{{object.finalViscosityUnit}}
+			<span class="col-12 col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final viscosity</span>
+			<span class="col-12 col-sm-3 col-md-4" id="finalViscosity_{{forloop.counter}}">
+			{% if object.finalViscosityUnit == "Not Required/Measured" %}
+				{{object.finalViscosityUnit}}
+			{% elif object.finalViscosityUnit == none %}
+				{{object.finalViscosityUnit}}
 			{% else %}
-				Not specified
+				{{object.finalViscosity}} {{object.finalViscosityUnit}}
 			{% endif %}</span>						
 		</div>
 		<div class="row" style="padding: 0.5em 0em">
-			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final opacity</span>
-			<span class="col-sm-3 col-md-4" id="finalOpacity_{{forloop.counter}}">
+			<span class="col-12 col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final opacity</span>
+			<span class="col-12 col-sm-3 col-md-4" id="finalOpacity_{{forloop.counter}}">
 			{% if object.finalOpacity != none %}
 				{{object.finalOpacity}}
 			{% else %}
-				Not specified
+				Not yet measured/required
 			{% endif %}</span>					
 		</div>
 		<div class="row" style="padding: 0.5em 0em">
-			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final gloss</span>
-			<span class="col-sm-3 col-md-4" id="finalGloss_{{forloop.counter}}">
+			<span class="col-12 col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final gloss</span>
+			<span class="col-12 col-sm-3 col-md-4" id="finalGloss_{{forloop.counter}}">
 			{% if object.finalGloss != none %}
 				{{object.finalGloss}}
 			{% else %}
-				Not specified
+				Not yet measured/required
 			{% endif %}</span>
 		</div>
 		<div class="row" style="padding: 0.5em 0em">
-			<span class="col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final color DE</span>
-			<span class="col-sm-3 col-md-4" id="finalColorDE_{{forloop.counter}}">
-			{% if object.finalColorDe != none %}
+			<span class="col-12 col-sm-2 col-md-3" id="pPlanMachine_{{forloop.counter}}" style="font-weight: bold;">Final color DE</span>
+			<span class="col-12 col-sm-3 col-md-4" id="finalColorDE_{{forloop.counter}}">
+			{% if object.finalColorDeSpec == "Visual Match" %}
+				{{object.finalColorDeSpec}}
+			{% elif object.finalColorDeSpec == "Spectrophotometer" %}
 				{{object.finalColorDe}} on {{object.finalColorDeSpec}}
+			{% elif object.finalColorDeSpec == "Spectrophotometer" %}
+				{{object.finalColorDeSpec}}
 			{% else %}
-				Not specified
+				Not yet measured/required
 			{% endif %}</span>	
 		</div>
 	</div>

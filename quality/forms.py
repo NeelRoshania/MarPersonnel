@@ -16,6 +16,7 @@ class PaintInfoForm(forms.ModelForm): # or forms.ModelForm
             'batchPeriod',
             'batchNumber',
             'initialFog',
+            'initialFogUnit',
             'initialPremixViscosity',
             'initialViscosityUnit',
             'finalSg',
@@ -24,6 +25,7 @@ class PaintInfoForm(forms.ModelForm): # or forms.ModelForm
             'finalTouchDry',
             'finalTouchDryUnit',
             'finalDft',
+            'finalFOGUnit',
             'finalDftUnit',
             'finalOpacity',
             'finalFog',
@@ -46,6 +48,7 @@ class PaintInfoForm(forms.ModelForm): # or forms.ModelForm
             'batchPeriod': "Batch period",
             'batchNumber': "Batch number",
             'initialFog': "Premix FOG",
+            'initialFogUnit': "Premix FOG specification",
             'initialPremixViscosity': "Initial premix viscosity",
             'finalPremixViscosity': "Final premix viscosity",
             'initialViscosityUnit': "Premix viscosity unit",
@@ -58,6 +61,7 @@ class PaintInfoForm(forms.ModelForm): # or forms.ModelForm
             'finalDftUnit': "Dry film thickness unit",
             'finalOpacity': "Opacity at pass",
             'finalFog': "Final FOG at pass",
+            'finalFOGUnit': "Final FOG specification",
             'finalViscosity': "Final viscosity at pass",
             'finalViscosityUnit': "Final viscosity at pass",
             'finalGloss': "Final gloss at pass",
@@ -77,6 +81,7 @@ class PaintInfoForm(forms.ModelForm): # or forms.ModelForm
             'batchPeriod': forms.NumberInput(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'batchNumber': forms.NumberInput(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'initialFog': forms.NumberInput(attrs={'class':'form-control'}),
+            'initialFogUnit': forms.Select(attrs={'class':'form-control',}),
             'initialPremixViscosity': forms.NumberInput(attrs={'class':'form-control'}),
             'finalPremixViscosity': forms.NumberInput(attrs={'class':'form-control'}),
             'initialViscosityUnit': forms.Select(attrs={'class':'form-control'}),
@@ -89,6 +94,7 @@ class PaintInfoForm(forms.ModelForm): # or forms.ModelForm
             'finalDftUnit': forms.Select(attrs={'class':'form-control'}),
             'finalOpacity': forms.NumberInput(attrs={'class':'form-control'}),
             'finalFog': forms.NumberInput(attrs={'class':'form-control'}),
+            'finalFOGUnit': forms.Select(attrs={'class':'form-control'}),
             'finalViscosity': forms.NumberInput(attrs={'class':'form-control'}),
             'finalViscosityUnit': forms.Select(attrs={'class':'form-control'}),
             'finalGloss': forms.NumberInput(attrs={'class':'form-control'}),
@@ -119,6 +125,18 @@ class PaintInfoForm(forms.ModelForm): # or forms.ModelForm
 
         }
 
+    def clean_batchPeriod(self):
+        batchPeriod = self.cleaned_data.get('batchPeriod')
+        if batchPeriod >= 999:
+            raise forms.ValidationError('Batch period format incorrect!')
+        return batchPeriod
+
+    def clean_batchNumber(self):
+        batchNumber = self.cleaned_data.get('batchNumber')
+        if batchNumber >= 99999:
+            raise forms.ValidationError('Batch number format incorrect!')
+        return batchNumber
+
 class PremixInfoForm(forms.ModelForm): # or forms.ModelForm
 
     class Meta:
@@ -126,10 +144,12 @@ class PremixInfoForm(forms.ModelForm): # or forms.ModelForm
 
         fields = (
             'initialFog',
+            'initialFogUnit',
             'initialPremixViscosity',
             'finalPremixViscosity',
             'initialViscosityUnit',
             'finalFog',
+            'finalFOGUnit',
             'dateLoaded',
             'datePremixPassed',
             'premixMachine',
@@ -138,10 +158,12 @@ class PremixInfoForm(forms.ModelForm): # or forms.ModelForm
 
         labels = {
             'initialFog': "Premix FOG",
+            'initialFogUnit': "Initial premix viscosity specification",
             'initialPremixViscosity': "Initial premix viscosity",
             'finalPremixViscosity': "Final premix viscosity",
             'initialViscosityUnit': "Premix viscosity unit",
             'finalFog': "Final FOG at pass",
+            'finalFOGUnit': "Final FOG specification",
             'dateLoaded': "Date of premix load",
             'datePremixPassed': "Date of premix pass",
             'premixMachine': "Premix Machine",
@@ -150,10 +172,12 @@ class PremixInfoForm(forms.ModelForm): # or forms.ModelForm
 
         widgets = {
             'initialFog': forms.NumberInput(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
+            'initialFogUnit': forms.Select(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'initialPremixViscosity': forms.NumberInput(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em", 'step': '0.01'}),
             'finalPremixViscosity': forms.NumberInput(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em", 'step': '0.01'}),
             'initialViscosityUnit': forms.Select(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'finalFog': forms.NumberInput(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em", 'step': '1'}),
+            'finalFOGUnit': forms.Select(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'dateLoaded': forms.TextInput(attrs={'class':'datepicker date form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'datePremixPassed': forms.TextInput(attrs={'class':'datepicker date form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'premixMachine': forms.Select(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
@@ -172,29 +196,30 @@ class PremixInfoForm(forms.ModelForm): # or forms.ModelForm
     #         raise forms.ValidationError('Final viscosity required!')
     #     return i_Visc
 
-    def clean_finalViscosity(self):
-        i_Visc = self.cleaned_data.get('finalPremixViscosity')
-        if i_Visc is None:
-            raise forms.ValidationError('Final premix viscosity required!')
-        return i_Visc
+    # def clean_finalViscosity(self):
+    #     i_Visc = self.cleaned_data.get('finalPremixViscosity')
+    #     if i_Visc is None:
+    #         raise forms.ValidationError('Final premix viscosity required!')
+    #     return i_Visc
 
-    # def clean_initialViscosityUnit(self):
-    #     iViscUnit = self.cleaned_data.get('initialViscosityUnit')
-    #     if iViscUnit is None:
-    #         raise forms.ValidationError('Premix unit required!')
-    #     return iViscUnit
+    def clean_initialViscosityUnit(self):
+        iViscUnit = self.cleaned_data.get('initialViscosityUnit')
+        if iViscUnit is None:
+            raise forms.ValidationError('Viscosity specification required!')
+        return iViscUnit
+    
+    def clean_initialFogUnit(self):
+        iFOG_Unit = self.cleaned_data.get('initialFogUnit')
+        if iFOG_Unit is None:
+            raise forms.ValidationError('Initial FOG specification required!')
+        return iFOG_Unit
 
-    def clean_finalFog(self):
-        fFog = self.cleaned_data.get('finalFog')
-        if fFog is None:
-            raise forms.ValidationError('Final FOG required!')
-        return fFog
 
-    def clean_dateIssued(self):
-        d_Issued = self.cleaned_data.get('dateIssued')
-        if d_Issued is None:
-            raise forms.ValidationError('Date issued required!')
-        return d_Issued
+    def clean_finalFOGUnit(self):
+        fFog_Unit = self.cleaned_data.get('finalFOGUnit')
+        if fFog_Unit is None:
+            raise forms.ValidationError('Final FOG specification required!')
+        return fFog_Unit
 
     def clean_dateLoaded(self):
         d_loaded = self.cleaned_data.get('dateLoaded')
@@ -257,7 +282,7 @@ class BatchInfoForm(forms.ModelForm): # or forms.ModelForm
             'finalViscosity': forms.NumberInput(attrs={'class':'form-control', 'step': '0.01', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'finalViscosityUnit': forms.Select(attrs={'class':'form-control', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'finalGloss': forms.NumberInput(attrs={'class':'form-control', 'step': '0.01', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
-            'finalColorDe': forms.NumberInput(attrs={'class':'form-control', 'step': '0.01', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
+            'finalColorDe': forms.NumberInput(attrs={'class':'form-control', 'step': '0.001', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
             'finalColorDeSpec': forms.Select(attrs={'class':'form-control', 'step': '0.001', 'style': "width: 100% !important; margin-bottom: 0.7em"}),
         }
 
@@ -267,11 +292,11 @@ class BatchInfoForm(forms.ModelForm): # or forms.ModelForm
             raise forms.ValidationError('Final specific gravity required!')
         return f_SG
 
-    def clean_finalHardDry(self):
-        f_HardDry = self.cleaned_data.get('finalHardDry')
-        if f_HardDry is None:
-            raise forms.ValidationError('Final hard dry time required!')
-        return f_HardDry
+    # def clean_finalHardDry(self):
+    #     f_HardDry = self.cleaned_data.get('finalHardDry')
+    #     if f_HardDry is None:
+    #         raise forms.ValidationError('Final hard dry time required!')
+    #     return f_HardDry
 
     def clean_finalHardDryUnit(self):
         f_HardDryUnit = self.cleaned_data.get('finalHardDryUnit')
@@ -279,11 +304,11 @@ class BatchInfoForm(forms.ModelForm): # or forms.ModelForm
             raise forms.ValidationError('Final hard dry unit required!')
         return f_HardDryUnit
 
-    def clean_finalTouchDry(self):
-        f_TouchDry = self.cleaned_data.get('finalTouchDry')
-        if f_TouchDry is None:
-            raise forms.ValidationError('Final touch dry time required!')
-        return f_TouchDry
+    # def clean_finalTouchDry(self):
+    #     f_TouchDry = self.cleaned_data.get('finalTouchDry')
+    #     if f_TouchDry is None:
+    #         raise forms.ValidationError('Final touch dry time required!')
+    #     return f_TouchDry
 
     def clean_finalTouchDryUnit(self):
         f_TouchDryUnit = self.cleaned_data.get('finalTouchDryUnit')
@@ -309,11 +334,11 @@ class BatchInfoForm(forms.ModelForm): # or forms.ModelForm
     #         raise forms.ValidationError('Final opacity required!')
     #     return f_Opacity
 
-    def clean_finalViscosity(self):
-        f_Visc = self.cleaned_data.get('finalViscosity')
-        if f_Visc is None:
-            raise forms.ValidationError('Final viscosity required!')
-        return f_Visc
+    # def clean_finalViscosity(self):
+    #     f_Visc = self.cleaned_data.get('finalViscosity')
+    #     if f_Visc is None:
+    #         raise forms.ValidationError('Final viscosity required!')
+    #     return f_Visc
 
     def clean_finalViscosityUnit(self):
         f_ViscUnit = self.cleaned_data.get('finalViscosityUnit')

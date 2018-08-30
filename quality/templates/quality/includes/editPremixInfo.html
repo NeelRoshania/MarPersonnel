@@ -8,7 +8,7 @@
 			</div>
 			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
 			    {{ subForm.datePremixPassed.errors }}
-			    	<label for="{{ subForm.datePremixPassed.id_for_label }}">Date premix passed</label>
+			    	<label for="{{ subForm.datePremixPassed.id_for_label }}">Date FOG passed</label>
 			    {{ subForm.datePremixPassed }}
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 			</div>
 			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
 			    {{ subForm.initialViscosityUnit.errors }}
-			    	<label for="{{ subForm.initialViscosityUnit.id_for_label }}">Viscosity Unit</label>
+			    	<label for="{{ subForm.initialViscosityUnit.id_for_label }}">Viscosity specification</label>
 			    {{ subForm.initialViscosityUnit }}
 			</div>
 		</div>
@@ -34,16 +34,27 @@
 		<div class="row" style="margin-top: 0.5em">
 			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
 			    {{ subForm.initialFog.errors }}
-			    	<label for="{{ subForm.initialFog.id_for_label }}">Initial FOG (um)</label>
+			    	<label for="{{ subForm.initialFog.id_for_label }}">Initial FOG</label>
 			    {{ subForm.initialFog }}
 			</div>
 			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
-			    {{ subForm.finalFog.errors }}
-			    	<label for="{{ subForm.finalFog.id_for_label }}">Final FOG (um)</label>
-			    {{ subForm.finalFog }}
+			    {{ subForm.initialFogUnit.errors }}
+			    	<label for="{{ subForm.initialFogUnit.id_for_label }}">Initial FOG specification</label>
+			    {{ subForm.initialFogUnit }}
 			</div>
 		</div>
-		<br>
+		<div class="row" style="margin-top: 0.5em">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.initialFog.errors }}
+			    	<label for="{{ subForm.initialFog.id_for_label }}">Final FOG</label>
+			    {{ subForm.initialFog }}
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
+			    {{ subForm.finalFOGUnit.errors }}
+			    	<label for="{{ subForm.finalFOGUnit.id_for_label }}">Final FOG specification</label>
+			    {{ subForm.finalFOGUnit }}
+			</div>
+		</div>
 		<div class="row" style="margin-top: 0.5em">
 			<div class="col-12 col-sm-12 col-md-12 col-lg-4" style="margin: 0.5em 0em !important;">
 			    {{ subForm.premixMachine.errors }}
@@ -57,10 +68,7 @@
 			<i class="fas fa-check"></i><span></span>
 			</button>
 		</div>
-		<br>
 	</div>
-
-
 	
 
 

@@ -167,6 +167,9 @@ class AjaxFormMixin_Quality(object):
                         except ImproperlyConfigured:
                             JsonResponse({'errorMessage': "Something went wrong trying to create batch adjustment"})
 
+                    
+                    
+
                     if (requestObj.POST.get('ajaxStatus') == "editPremixInformation"):
                         print("AjaxFormMixin_Quality:handleAjax called -> request to edit premix information")
                         try:
@@ -176,10 +179,12 @@ class AjaxFormMixin_Quality(object):
                             obj.dateLoaded=form.cleaned_data['dateLoaded']
                             obj.datePremixPassed=form.cleaned_data['datePremixPassed']
                             obj.initialFog=form.cleaned_data['initialFog']
+                            obj.initialFogUnit=form.cleaned_data['initialFogUnit']
                             obj.initialPremixViscosity=form.cleaned_data['initialPremixViscosity']
                             obj.finalPremixViscosity=form.cleaned_data['finalPremixViscosity']
                             obj.initialViscosityUnit=form.cleaned_data['initialViscosityUnit']
                             obj.finalFog=form.cleaned_data['finalFog']
+                            obj.finalFOGUnit=form.cleaned_data['finalFOGUnit']
                             obj.premixInfoModifiedBy = User.objects.get(id=requestObj.user.id)
                             # obj.active=form.cleaned_data['active']
                             obj.save()

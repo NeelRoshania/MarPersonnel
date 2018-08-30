@@ -621,7 +621,7 @@ $(document).ready(function(){
     $(document).on('submit', '.quality-form', function(event){
        // code
         event.preventDefault()  // Prevent the form from submitting straight away
-        // alert(".my-ajax-form' clicked.")
+        alert(".my-ajax-form' clicked.")
         var $urlLocation = $(this).attr("data-url") // URL location specified in form to send data to
         var data = $(this).serializeArray() // Grab the form information effeciently
         $(this).clear   // Clear form to prevent double submit
@@ -632,7 +632,7 @@ $(document).ready(function(){
             {name: "newObjectSubmit", value: true},
             );  // Accumulate ajax data fields
         // console.log("POST URL Location --> " + $urlLocation + '\nSerialized AJAX Data --> ' + $.param(data) )
-
+        // console.log($.param(data))
         if (confirm("Is this information correct?")) {
             // Perform ajax call to update entry
             $.ajax({

@@ -49,7 +49,7 @@
 	<script>
 		// This scrip gets the cookie generated above, and sets it up as header for any ajax request made on seperate scripts
 		var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
-		console.log("Generated csrftoken: " + csrftoken)
+		// console.log("Generated csrftoken: " + csrftoken)
 
 		function csrfSafeMethod(method) {
 		    // these HTTP methods do not require CSRF protection
